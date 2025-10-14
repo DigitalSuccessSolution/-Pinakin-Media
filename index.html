@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinakin Media | Premium Digital Marketing Solutions</title>
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#043093',
+                        secondary: '#ffffff',
+                        text: '#000000'
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #043093;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #03257a;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans text-black">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">Pinakin Media</h1>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="#about" class="hover:text-primary transition-colors duration-300">About Us</a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="relative group">
+                        <button class="hover:text-primary transition-colors duration-300 flex items-center">
+                            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 group-hover:translate-y-0">
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Digital Marketing</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Content Strategy</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Web Development</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Brand Consulting</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#careers" class="hover:text-primary transition-colors duration-300">Careers</a>
+                    <a href="#resources" class="hover:text-primary transition-colors duration-300">Resources</a>
+                    <a href="#blogs" class="hover:text-primary transition-colors duration-300">Blogs</a>
+                    <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-800 transition-colors duration-300">Get in Touch</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden py-4 border-t">
+                <a href="#home" class="block py-2 hover:text-primary">Home</a>
+                <a href="#about" class="block py-2 hover:text-primary">About Us</a>
+                <a href="#services" class="block py-2 hover:text-primary">Services</a>
+                <a href="#careers" class="block py-2 hover:text-primary">Careers</a>
+                <a href="#resources" class="block py-2 hover:text-primary">Resources</a>
+                <a href="#blogs" class="block py-2 hover:text-primary">Blogs</a>
+                <a href="#contact" class="block py-2 text-primary font-semibold">Get in Touch</a>
+            </div>
+        </div>
+    </nav>
+
+  
+
+<!-- 
+     hero section start -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow-x: hidden;
+        }
+
+        #home {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero-slider {
+            position: relative;
+            height: 100vh;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-overlay {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 20, 40, 0.6) 100%);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .slide-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 2rem;
+            z-index: 10;
+        }
+
+        .slide-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .slide-description {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            line-height: 1.6;
+        }
+
+        .slide-btn {
+            position: relative;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+            overflow: hidden;
+        }
+
+        .slide-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .slide-btn:hover::before {
+            opacity: 1;
+        }
+
+        .slide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(59, 130, 246, 0.5);
+        }
+
+        .slide-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 3rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .slider-dot {
+            width: 3rem;
+            height: 0.35rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-dot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slider-dot.active {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .slider-dot.active::before {
+            transform: translateX(0);
+        }
+
+        .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Navigation arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.prev {
+            left: 2rem;
+        }
+
+        .nav-arrow.next {
+            right: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-arrow {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .nav-arrow.prev {
+                left: 1rem;
+            }
+
+            .nav-arrow.next {
+                right: 1rem;
+            }
+
+            .slider-controls {
+                bottom: 2rem;
+            }
+
+            .slider-dot {
+                width: 2rem;
+                height: 0.3rem;
+            }
+        }
+    </style>
+
+    <section id="home">
+        <div id="hero-slider">
+            <!-- Slide 1 -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Elevate Your Digital Presence</h1>
+                                          <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300">
+Strategic marketing solutions that drive growth and maximize ROI</p>
+                        <button class="slide-btn"><span>Discover Our Solutions</span></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Data-Driven Marketing Excellence</h1>
+                        <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300" > Harness the power of analytics to optimize your marketing strategy</class=>
+                        <button class="slide-btn"><span>Explore Our Services</span></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Innovative Solutions for Modern Brands</h1>
+                                            <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300">
+Transform your business with cutting-edge digital strategies</p>
+                        <button class="slide-btn"><span>Start Your Journey</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow prev">‹</button>
+        <button class="nav-arrow next">›</button>
+        
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-dot active"></button>
+            <button class="slider-dot"></button>
+            <button class="slider-dot"></button>
+        </div>
+    </section>
+
+    <script>
+        // Slider configuration
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        let autoplayInterval;
+
+        // Create floating particles
+        function createParticles() {
+            const slider = document.getElementById('hero-slider');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                slider.appendChild(particle);
+
+                gsap.to(particle, {
+                    y: -100 + Math.random() * 200,
+                    x: -100 + Math.random() * 200,
+                    opacity: 0,
+                    duration: 3 + Math.random() * 4,
+                    repeat: -1,
+                    delay: Math.random() * 3,
+                    ease: "power1.inOut"
+                });
+            }
+        }
+
+        // Animate slide content
+        function animateSlideContent(slide, direction = 1) {
+            const title = slide.querySelector('.slide-title');
+            const description = slide.querySelector('.slide-description');
+            const btn = slide.querySelector('.slide-btn');
+
+            const tl = gsap.timeline();
+
+            tl.fromTo(title, 
+                { 
+                    opacity: 0, 
+                    y: direction * 60,
+                    scale: 0.9
+                },
+                { 
+                    opacity: 1, 
+                    y: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: "power3.out"
+                }
+            )
+            .fromTo(description,
+                {
+                    opacity: 0,
+                    y: direction * 40
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                },
+                "-=0.6"
+            )
+            .fromTo(btn,
+                {
+                    opacity: 0,
+                    y: direction * 30,
+                    scale: 0.9
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "back.out(1.2)"
+                },
+                "-=0.5"
+            );
+        }
+
+        // Change slide function
+        function changeSlide(newIndex, direction = 1) {
+            if (newIndex === currentSlide) return;
+
+            const currentSlideEl = slides[currentSlide];
+            const newSlideEl = slides[newIndex];
+
+            // Animate out current slide
+            gsap.to(currentSlideEl, {
+                opacity: 0,
+                scale: 1.1,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    currentSlideEl.classList.remove('active');
+                    currentSlideEl.style.visibility = 'hidden';
+                }
+            });
+
+            // Animate in new slide
+            newSlideEl.classList.add('active');
+            newSlideEl.style.visibility = 'visible';
+            
+            gsap.fromTo(newSlideEl,
+                { opacity: 0, scale: 1.1 },
+                { 
+                    opacity: 1, 
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                }
+            );
+
+            // Animate content
+            animateSlideContent(newSlideEl, direction);
+
+            // Update dots
+            dots[currentSlide].classList.remove('active');
+            dots[newIndex].classList.add('active');
+
+            currentSlide = newIndex;
+        }
+
+        // Next slide
+        function nextSlide() {
+            const newIndex = (currentSlide + 1) % totalSlides;
+            changeSlide(newIndex, 1);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            changeSlide(newIndex, -1);
+        }
+
+        // Autoplay
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        // Event listeners
+        document.querySelector('.nav-arrow.next').addEventListener('click', () => {
+            stopAutoplay();
+            nextSlide();
+            startAutoplay();
+        });
+
+        document.querySelector('.nav-arrow.prev').addEventListener('click', () => {
+            stopAutoplay();
+            prevSlide();
+            startAutoplay();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopAutoplay();
+                const direction = index > currentSlide ? 1 : -1;
+                changeSlide(index, direction);
+                startAutoplay();
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                stopAutoplay();
+                prevSlide();
+                startAutoplay();
+            } else if (e.key === 'ArrowRight') {
+                stopAutoplay();
+                nextSlide();
+                startAutoplay();
+            }
+        });
+
+        // Initialize
+        createParticles();
+        animateSlideContent(slides[0]);
+        startAutoplay();
+
+        // Pause autoplay on hover
+        document.getElementById('hero-slider').addEventListener('mouseenter', stopAutoplay);
+        document.getElementById('hero-slider').addEventListener('mouseleave', startAutoplay);
+    </script>
+
+<!-- hero section end -->
+
+
+
+
+<!-- What We Offer Section -->
+<section id="services" class="py-16 md:py-20 relative overflow-hidden">
+  <!-- Background with professional overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"></div>
+  
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+  <!-- Decorative Background Elements -->
+  <div class="absolute top-0 left-0 w-72 h-72 bg-white opacity-3 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-3 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-12" id="section-header">
+      <div class="inline-block mb-4">
+        <span class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-medium tracking-wide uppercase border border-white/20">
+          Our Services
+        </span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+        What We Offer
+      </h2>
+      <div class="w-20 h-1 bg-blue-400 mx-auto mb-6 rounded-full"></div>
+      <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300">
+        Transform your business with our comprehensive funnel strategies designed to maximize growth at every stage
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <!-- TOFU Card -->
+      <div class="service-card bg-white/5 backdrop-blur-sm p-6 lg:p-8 rounded-xl border border-white/10 relative group hover:bg-white/10 transition-all duration-300">
+        <div class="icon-wrapper w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+          <i class="fas fa-users text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-white">
+          TOFU
+        </h3>
+        <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wider">Top of Funnel</p>
+        <p class="text-sm leading-relaxed mb-4 text-gray-300">
+          Build brand awareness and attract potential customers with targeted content marketing, SEO, and social media strategies that drive traffic.
+        </p>
+        <div class="flex items-center gap-2 text-blue-300 font-medium group-hover:gap-3 transition-all duration-300 text-sm">
+          <span>Learn More</span>
+          <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300 text-xs"></i>
+        </div>
+        <div class="accent-line bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+      </div>
+
+      <!-- MOFU Card -->
+      <div class="service-card bg-white/5 backdrop-blur-sm p-6 lg:p-8 rounded-xl border border-white/10 relative group hover:bg-white/10 transition-all duration-300">
+        <div class="icon-wrapper w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+          <i class="fas fa-filter text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-white">
+          MOFU
+        </h3>
+        <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wider">Middle of Funnel</p>
+        <p class="text-sm leading-relaxed mb-4 text-gray-300">
+          Nurture leads with personalized content, email marketing, and retargeting campaigns to move them closer to conversion and build trust.
+        </p>
+        <div class="flex items-center gap-2 text-purple-300 font-medium group-hover:gap-3 transition-all duration-300 text-sm">
+          <span>Learn More</span>
+          <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300 text-xs"></i>
+        </div>
+        <div class="accent-line bg-gradient-to-r from-purple-500 to-pink-500"></div>
+      </div>
+
+      <!-- BOFU Card -->
+      <div class="service-card bg-white/5 backdrop-blur-sm p-6 lg:p-8 rounded-xl border border-white/10 relative group hover:bg-white/10 transition-all duration-300">
+        <div class="icon-wrapper w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+          <i class="fas fa-shopping-cart text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-white">
+          BOFU
+        </h3>
+        <p class="text-xs text-gray-400 mb-3 font-medium uppercase tracking-wider">Bottom of Funnel</p>
+        <p class="text-sm leading-relaxed mb-4 text-gray-300">
+          Convert qualified leads into customers with persuasive sales enablement, demos, and conversion optimization strategies that close deals.
+        </p>
+        <div class="flex items-center gap-2 text-green-300 font-medium group-hover:gap-3 transition-all duration-300 text-sm">
+          <span>Learn More</span>
+          <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300 text-xs"></i>
+        </div>
+        <div class="accent-line bg-gradient-to-r from-green-500 to-emerald-500"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<style>
+  /* Import Helvetica-like font stack */
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transition: left 0.7s;
+  }
+
+  .service-card:hover::before {
+    left: 100%;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon-wrapper {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .service-card:hover .icon-wrapper {
+    transform: scale(1.05);
+  }
+
+  .accent-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover .accent-line {
+    width: 100%;
+  }
+
+  /* Improve text readability */
+  #services p,
+  #services .text-gray-300 {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  #services .text-gray-400 {
+    color: rgba(255, 255, 255, 0.6);
+  }
+</style>
+
+<section class="py-20 relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <!-- Floating particles -->
+    <div class="absolute inset-0 opacity-30">
+      <div class="particle absolute w-2 h-2 bg-blue-400 rounded-full opacity-60" style="top: 20%; left: 10%; animation: float 6s ease-in-out infinite;"></div>
+      <div class="particle absolute w-1 h-1 bg-cyan-400 rounded-full opacity-40" style="top: 60%; left: 80%; animation: float 8s ease-in-out infinite 1s;"></div>
+      <div class="particle absolute w-3 h-3 bg-white rounded-full opacity-20" style="top: 40%; left: 30%; animation: float 7s ease-in-out infinite 2s;"></div>
+      <div class="particle absolute w-1.5 h-1.5 bg-blue-300 rounded-full opacity-50" style="top: 80%; left: 40%; animation: float 9s ease-in-out infinite 0.5s;"></div>
+    </div>
+    
+    <!-- Gradient Orbs -->
+    <div class="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-500 rounded-full mix-blend-overlay filter blur-3xl opacity-15 animate-pulse" style="animation-delay: 1s;"></div>
+  </div>
+
+  <!-- Grid Pattern Overlay -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20" data-aos="fade-down" data-aos-duration="800">
+      <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full backdrop-blur-md bg-white/5 border border-white/10 mb-8" data-aos="fade-down" data-aos-delay="100">
+        <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+        <span class="text-cyan-300 text-sm font-medium tracking-wider">DEMAND GENERATION EXCELLENCE</span>
+        <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-aos="fade-down" data-aos-delay="200">
+        Demand Generation
+        <span class="block mt-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Mastery</span>
+      </h2>
+      <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300" data-aos="fade-down" data-aos-delay="300">
+        Transform your marketing strategy with our comprehensive demand generation solutions that drive measurable results and sustainable growth.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <!-- Card 1 -->
+      <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+        <div class="relative rounded-3xl p-8 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500 group-hover:scale-105 h-full">
+          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <i class="fas fa-arrow-right text-white text-lg"></i>
+          </div>
+          
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 group-hover:from-blue-500/30 group-hover:to-cyan-500/30 transition-all duration-500">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
+              <i class="fas fa-bullseye text-white text-2xl"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white text-center group-hover:text-cyan-100 transition-colors duration-300">Multi-Touch Campaigns</h3>
+          <p class="text-gray-300 text-center leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            Engage prospects across multiple channels with coordinated messaging for maximum impact and conversion through our integrated approach.
+          </p>
+          
+          <div class="mt-8 flex justify-center">
+            <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full group-hover:w-24 transition-all duration-500"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+        <div class="relative rounded-3xl p-8 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 group-hover:border-purple-500/30 transition-all duration-500 group-hover:scale-105 h-full">
+          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <i class="fas fa-arrow-right text-white text-lg"></i>
+          </div>
+          
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 group-hover:from-purple-500/30 group-hover:to-pink-500/30 transition-all duration-500">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+              <i class="fas fa-desktop text-white text-2xl"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white text-center group-hover:text-purple-100 transition-colors duration-300">Webinar & Content Strategies</h3>
+          <p class="text-gray-300 text-center leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            Create valuable educational content that positions your brand as an industry thought leader and builds lasting customer relationships.
+          </p>
+          
+          <div class="mt-8 flex justify-center">
+            <div class="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full group-hover:w-24 transition-all duration-500"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group relative" data-aos="fade-up" data-aos-delay="300">
+        <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-3xl blur-lg group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+        <div class="relative rounded-3xl p-8 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500 group-hover:scale-105 h-full">
+          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <i class="fas fa-arrow-right text-white text-lg"></i>
+          </div>
+          
+          <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 group-hover:from-green-500/30 group-hover:to-emerald-500/30 transition-all duration-500">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
+              <i class="fas fa-chart-line text-white text-2xl"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-2xl font-bold mb-4 text-white text-center group-hover:text-emerald-100 transition-colors duration-300">Digital & Offline Activation</h3>
+          <p class="text-gray-300 text-center leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            Integrate online and offline marketing efforts for a seamless customer experience across all touchpoints and channels.
+          </p>
+          
+          <div class="mt-8 flex justify-center">
+            <div class="w-16 h-1 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full group-hover:w-24 transition-all duration-500"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+      <div class="inline-flex flex-col sm:flex-row items-center gap-6">
+        <button class="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl font-bold text-lg hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/25 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+          <span class="relative">Explore Our Solutions</span>
+        </button>
+        
+        <div class="flex items-center gap-4 text-gray-400">
+          <div class="w-12 h-px bg-gradient-to-r from-transparent to-gray-600"></div>
+          <span class="text-sm">or</span>
+          <div class="w-12 h-px bg-gradient-to-r from-gray-600 to-transparent"></div>
+        </div>
+        
+        <button class="px-8 py-4 bg-transparent text-cyan-300 rounded-2xl font-semibold border border-cyan-500/30 hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-all duration-300">
+          Schedule a Demo
+        </button>
+      </div>
+      
+      <!-- Trust indicators -->
+      <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-400 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="flex -space-x-2">
+            <div class="w-6 h-6 bg-blue-500 rounded-full border-2 border-slate-900"></div>
+            <div class="w-6 h-6 bg-cyan-500 rounded-full border-2 border-slate-900"></div>
+            <div class="w-6 h-6 bg-green-500 rounded-full border-2 border-slate-900"></div>
+          </div>
+          <span>Trusted by 500+ companies</span>
+        </div>
+        <div class="hidden sm:block w-px h-6 bg-gray-600"></div>
+        <div class="flex items-center gap-2">
+          <i class="fas fa-star text-yellow-400"></i>
+          <span>4.9/5 Average Rating</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-20px) translateX(10px); }
+  66% { transform: translateY(10px) translateX(-10px); }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.particle {
+  animation: float 8s ease-in-out infinite;
+}
+</style>
+
+
+    
+<!-- Our Focus -->
+<section class="py-24 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Floating gradient orbs -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute top-1/2 -right-32 w-80 h-80 bg-indigo-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-600 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
+        
+        <!-- Grid pattern overlay -->
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <!-- Floating particles -->
+        <div class="absolute inset-0 opacity-30">
+            <div class="particle absolute w-2 h-2 bg-blue-400 rounded-full" style="top: 20%; left: 15%; animation: float 8s ease-in-out infinite;"></div>
+            <div class="particle absolute w-1 h-1 bg-cyan-400 rounded-full" style="top: 70%; left: 85%; animation: float 10s ease-in-out infinite 1s;"></div>
+            <div class="particle absolute w-3 h-3 bg-white rounded-full opacity-40" style="top: 40%; left: 25%; animation: float 9s ease-in-out infinite 2s;"></div>
+        </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-20" data-aos="fade-down" data-aos-duration="800">
+            <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full backdrop-blur-md bg-white/5 border border-white/10 mb-8" data-aos="fade-down" data-aos-delay="100">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                <span class="text-cyan-300 text-sm font-medium tracking-wider uppercase">Strategic Excellence</span>
+                <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white" data-aos="fade-down" data-aos-delay="200">
+                Our Strategic
+                <span class="block mt-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Focus</span>
+            </h2>
+            <div class="w-32 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mb-6" data-aos="fade-down" data-aos-delay="300"></div>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed" data-aos="fade-down" data-aos-delay="400">
+                Driving measurable results through innovative strategies and collaborative partnerships
+            </p>
+        </div>
+        
+        <!-- Content Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <!-- Left Card - Data Driven -->
+            <div class="group relative" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+                <!-- Hover glow effect -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                
+                <div class="relative rounded-3xl p-10 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 group-hover:border-blue-500/30 transition-all duration-500 group-hover:scale-105 h-full">
+                    <!-- Corner accent -->
+                    <div class="absolute top-0 right-0 w-24 h-24 overflow-hidden rounded-tr-3xl">
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 transform rotate-45 translate-x-6 -translate-y-6"></div>
+                    </div>
+                    
+                    <div class="flex items-start mb-8">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/30 flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-500">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-100 transition-colors duration-300">Data-Driven Excellence</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mb-4 group-hover:w-24 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
+                        At Pinakin Media, we specialize in creating data-driven marketing strategies that deliver measurable results. Our approach combines creative thinking with analytical rigor to develop campaigns that resonate with your target audience and drive sustainable business growth.
+                    </p>
+                    
+                    <!-- Feature points -->
+                    <div class="mt-8 space-y-3">
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                            <span class="text-sm">Advanced analytics and insights</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                            <span class="text-sm">ROI-focused campaign optimization</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                            <span class="text-sm">Real-time performance tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Card - Partnerships -->
+            <div class="group relative" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                <!-- Hover glow effect -->
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+                
+                <div class="relative rounded-3xl p-10 backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/10 border border-white/10 group-hover:border-purple-500/30 transition-all duration-500 group-hover:scale-105 h-full">
+                    <!-- Corner accent -->
+                    <div class="absolute top-0 right-0 w-24 h-24 overflow-hidden rounded-tr-3xl">
+                        <div class="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 transform rotate-45 translate-x-6 -translate-y-6"></div>
+                    </div>
+                    
+                    <div class="flex items-start mb-8">
+                        <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center justify-center mr-6 group-hover:scale-110 transition-transform duration-500">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-purple-100 transition-colors duration-300">Strategic Partnerships</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mb-4 group-hover:w-24 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 leading-relaxed text-lg group-hover:text-gray-200 transition-colors duration-300">
+                        We believe in building long-term partnerships with our clients, working collaboratively to understand your unique challenges and opportunities. Our team of experts stays at the forefront of industry trends and technologies to ensure your marketing efforts are always ahead of the curve.
+                    </p>
+                    
+                    <!-- Feature points -->
+                    <div class="mt-8 space-y-3">
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                            <span class="text-sm">Dedicated strategic collaboration</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                            <span class="text-sm">Continuous innovation and adaptation</span>
+                        </div>
+                        <div class="flex items-center text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                            <div class="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                            <span class="text-sm">Industry-leading expertise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom CTA -->
+        <div class="text-center" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+            <div class="inline-flex flex-col sm:flex-row items-center gap-6">
+                <button class="group relative px-12 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                    <span class="relative flex items-center gap-2">
+                        Discover Our Approach
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </span>
+                </button>
+                
+                <div class="flex items-center gap-4 text-gray-400">
+                    <div class="w-12 h-px bg-gradient-to-r from-transparent to-gray-600"></div>
+                    <span class="text-sm">or</span>
+                    <div class="w-12 h-px bg-gradient-to-r from-gray-600 to-transparent"></div>
+                </div>
+                
+                <button class="px-8 py-4 bg-transparent text-cyan-300 rounded-2xl font-semibold border border-cyan-500/30 hover:bg-cyan-500/10 hover:border-cyan-400/50 transition-all duration-300">
+                    View Case Studies
+                </button>
+            </div>
+            
+            <!-- Trust indicators -->
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-gray-400 text-sm">
+                <div class="flex items-center gap-3">
+                    <div class="flex -space-x-2">
+                        <div class="w-6 h-6 bg-blue-500 rounded-full border-2 border-slate-900"></div>
+                        <div class="w-6 h-6 bg-cyan-500 rounded-full border-2 border-slate-900"></div>
+                        <div class="w-6 h-6 bg-purple-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                    <span>Trusted by industry leaders</span>
+                </div>
+                <div class="hidden sm:block w-px h-6 bg-gray-600"></div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span>4.9/5 Client Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33% { transform: translateY(-15px) translateX(8px); }
+  66% { transform: translateY(8px) translateX(-8px); }
+}
+
+.particle {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+</style>
+    
+
+ <!-- Why Choose Us -->
+<section class="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+    <!-- Background decorative elements -->
+    <div class="absolute inset-0 overflow-hidden opacity-10">
+        <div class="absolute -top-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 -right-20 w-96 h-96 bg-indigo-500 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-2000"></div>
+        <div class="absolute -bottom-40 left-1/3 w-72 h-72 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-4000"></div>
+    </div>
+    
+    <!-- Grid pattern overlay -->
+    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"1\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+            <span class="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium mb-4 tracking-wide border border-blue-500/30">
+                OUR ADVANTAGES
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Why Choose Us
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full mb-4"></div>
+            <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300">Discover what sets us apart and makes us the perfect partner for your digital success</p>
+        </div>
+        
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Reason 1 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-blue-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Data-Driven Approach</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        We base all our strategies on comprehensive data analysis and market research to ensure maximum impact.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reason 2 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="150">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-purple-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Innovative Solutions</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        We stay ahead of trends to deliver cutting-edge marketing strategies that give you a competitive advantage.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reason 3 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-green-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Expert Team</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        Our team consists of industry veterans with decades of combined experience across all digital marketing disciplines.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reason 4 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="250">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-orange-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Proven Results</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        We have a track record of delivering exceptional ROI for our clients across various industries and markets.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reason 5 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-cyan-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Partnership Approach</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        We work collaboratively with our clients as an extension of their team, ensuring alignment with business goals.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Reason 6 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="350">
+                <div class="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 h-full transition-all duration-500 hover:bg-white/10 hover:border-indigo-500/30 hover:-translate-y-2">
+                    <div class="flex items-start mb-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mt-2">Agile Methodology</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed group-hover:text-white transition-colors duration-300">
+                        We adapt quickly to market changes and optimize campaigns in real-time for maximum performance and efficiency.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-8 border-t border-white/10">
+            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">98%</div>
+                <div class="text-gray-300">Client Satisfaction</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="450">
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">250+</div>
+                <div class="text-gray-300">Projects Completed</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="500">
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
+                <div class="text-gray-300">Years Experience</div>
+            </div>
+            <div class="text-center" data-aos="fade-up" data-aos-delay="550">
+                <div class="text-3xl md:text-4xl font-bold text-white mb-2">3.5x</div>
+                <div class="text-gray-300">Average ROI</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+</style>
+
+
+<!-- Digital Transformation Services Section -->
+<section class="relative overflow-hidden min-h-screen flex items-center justify-center">
+     <style>
+    * {
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+    }
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 48, 147, 0.85);
+      z-index: -1;
+    }
+
+    .service-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-left-color: #3b82f6;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .text-xl {
+        font-size: 1rem;
+      }
+    }
+  </style>
+     <!-- Background Video -->
+  <video autoplay muted loop class="video-background">
+    <source src="image/bg video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="video-overlay"></div>
+
+     <div class="max-w-7xl mx-auto px-4 relative z-10 w-full">
+        <!-- Header -->
+         <div class="text-center mb-10 mt-[30px]" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white">Trusted by leading technology companies for demand generation success</h1>
+          <p class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-gray-300"> Our specialized digital transformation services and solutions help businesses enhance flexibility and drive innovation. Our approach ensures a seamless shift toward a digital-first future.</p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Repeatable Service Cards -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-cogs text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Product Engineering Services</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Digital Product Studio</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Product & Platform Transformation</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Product Sustenance & Support</li>
+                </ul>
+            </div>
+
+            <!-- Repeat the above div for each service -->
+            <!-- Cloud & Infrastructure -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-cloud text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Cloud & Infrastructure</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Azure / AWS / GCP</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>IT Service Management</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>DevOps</li>
+                </ul>
+            </div>
+
+            <!-- Data Engineering & Analytics -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-database text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Data Engineering & Analytics</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Data Engineering</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Data Analytics</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Data Science</li>
+                </ul>
+            </div>
+
+            <!-- Digital Assurance -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="250">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-shield-alt text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Digital Assurance</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>QA Transformation Advisory</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Digital Functional Assurance</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Digital Experience Assurance</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Digital Technology Assurance</li>
+                </ul>
+            </div>
+
+            <!-- Intelligent Automation -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Intelligent Automation</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Business Process Management</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Robotic Process Automation</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Conversational AI</li>
+                </ul>
+            </div>
+
+            <!-- Platform & Technology Competency -->
+            <div class="service-card rounded-xl p-6 text-white shadow-lg" data-aos="fade-up" data-aos-delay="350">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-layer-group text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Platform & Technology Competency</h3>
+                </div>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Salesforce</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Servicenow</li>
+                    <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2"></i>Oracle (Utilities & ERP)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+     <div class="text-center mt-10 mb-[10px]" data-aos="fade-up" data-aos-delay="400">
+            <button class="bg-white text-blue-700 px-6 py-3 rounded-md font-semibold text-base hover:bg-gray-100 transition duration-300 shadow-md">
+                Explore All Services
+            </button>
+        </div>
+    </div>
+
+    <!-- AOS + GSAP Script -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -5,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</section>
+
+<!-- copemy end -->
+
+<!-- FAQ Section -->
+<section class="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+    <!-- Background decorative elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+        <div class="absolute -top-24 -left-24 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div class="absolute top-1/2 -right-16 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        <div class="absolute -bottom-16 left-1/3 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4 tracking-wide">
+                HELP & SUPPORT
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent">
+                Frequently Asked Questions
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full mb-4"></div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Find quick answers to common questions about our services and processes
+            </p>
+        </div>
+        
+        <!-- FAQ Items -->
+        <div class="space-y-4 mb-12">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                        What services does Pinakin Media offer?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-blue-600 transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We offer a comprehensive range of digital marketing services including SEO, content marketing, social media management, PPC advertising, email marketing, web development, and marketing automation. Our team specializes in creating customized strategies that drive measurable results for your business.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                        How do you measure campaign success?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-blue-600 transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We use a variety of KPIs including ROI, conversion rates, customer acquisition cost, lifetime value, engagement metrics, and brand awareness indicators to measure and optimize campaign performance. Our transparent reporting system ensures you always know exactly how your campaigns are performing.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                        What industries do you specialize in?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-blue-600 transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We have experience across multiple industries including technology, healthcare, finance, e-commerce, professional services, and B2B manufacturing. Our diverse expertise allows us to adapt proven strategies to your specific industry needs and challenges.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                        How long does it take to see results?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-blue-600 transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        While some tactics like PPC can deliver immediate results, comprehensive marketing strategies typically show significant impact within 3-6 months as we optimize and scale campaigns. We provide regular progress updates and adjust strategies based on performance data to ensure optimal results.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inquiry Form Section -->
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8" data-aos="fade-up" data-aos-delay="400">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Still Have Questions?</h3>
+                <p class="text-gray-600">Get in touch with our experts for personalized assistance</p>
+            </div>
+            
+            <form id="inquiryForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" id="name" name="name" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                               placeholder="Enter your full name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                               placeholder="Enter your email">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                        <input type="text" id="company" name="company" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                               placeholder="Your company name">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                               placeholder="Your phone number">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Your Question</label>
+                    <textarea id="message" name="message" rows="4" required
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                              placeholder="Tell us more about your inquiry..."></textarea>
+                </div>
+                
+                <div class="flex items-center">
+                    <input type="checkbox" id="consent" name="consent" required 
+                           class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="consent" class="ml-2 text-sm text-gray-600">
+                        I agree to receive marketing communications from Pinakin Media
+                    </label>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                    Submit Inquiry
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+    
+    .faq-item.active .faq-question {
+        background-color: #f8fafc;
+        border-color: #3b82f6;
+    }
+    
+    .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+    }
+    
+    .faq-item.active .faq-answer {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ Toggle Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-answer').classList.add('hidden');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+                answer.classList.toggle('hidden');
+            });
+        });
+        
+        // Form Submission Handling
+        const inquiryForm = document.getElementById('inquiryForm');
+        
+        inquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to your server
+            console.log('Form submitted:', data);
+            
+            // Show success message (in a real implementation, you'd want to show a proper modal or notification)
+            alert('Thank you for your inquiry! We will get back to you within 24 hours.');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Add AOS initialization if not already done
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+        }
+    });
+</script>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Pinakin Media</h3>
+                    <p class="mb-4">Premium digital marketing solutions that drive growth and maximize ROI for businesses of all sizes.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-gray-300 transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-gray-300 transition-colors duration-300">About Us</a></li>
+                        <li><a href="#services" class="hover:text-gray-300 transition-colors duration-300">Services</a></li>
+                        <li><a href="#careers" class="hover:text-gray-300 transition-colors duration-300">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Webinars</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>123 Business Avenue, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@pinakinmedia.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Pinakin Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Signup Form Modal -->
+    <div id="signup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Get Started with Pinakin Media</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="signup-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                
+                <div>
+                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                    <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">How can we help you?</label>
+                    <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors duration-300">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                
+                // Show signup modal
+                document.getElementById('signup-modal').classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('signup-modal').classList.add('hidden');
+        });
+
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // In a real implementation, you would send this data to your backend
+            console.log('Form submitted:', data);
+            
+            // Show success message (in a real implementation)
+            alert('Thank you for your interest! We will contact you soon.');
+            
+            // Close modal
+            document.getElementById('signup-modal').classList.add('hidden');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Hero slider functionality with GSAP
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#hero-slider > div');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        function showSlide(index) {
+            // Hide all slides
+            gsap.to(slides, {
+                duration: 0.5,
+                opacity: 0,
+                onComplete: function() {
+                    slides.forEach(slide => slide.style.display = 'none');
+                    
+                    // Show current slide
+                    slides[index].style.display = 'block';
+                    
+                    gsap.fromTo(slides[index], 
+                        { opacity: 0 }, 
+                        { duration: 0.5, opacity: 1 }
+                    );
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-opacity-50');
+                    dot.classList.add('bg-opacity-100');
+                } else {
+                    dot.classList.remove('bg-opacity-100');
+                    dot.classList.add('bg-opacity-50');
+                }
+            });
+            
+            currentSlide = index;
+        }
+        
+        // Initialize slider
+        showSlide(0);
+        
+        // Auto-advance slides
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Dot click events
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+    </script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
