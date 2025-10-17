@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pinakin Media | Premium Digital Marketing Solutions</title>
-      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -13,6 +13,7 @@
     
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -55,26 +56,482 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* Custom animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Arrow-like diagonal overlay with gradient */
+        .overlay-shape {
+            background: linear-gradient(
+              135deg,
+              rgb(4 46 146) 0%,     /* deep blue top-left */
+              rgba(4, 48, 147, 0.7) 40%,    /* medium tone mid */
+              rgba(4, 48, 147, 0.0) 90%     /* fade-out bottom-right */
+            );
+            clip-path: polygon(0 0, 70% 0, 55% 100%, 0% 100%); /* diagonal chevron cut */
+            position: absolute;
+            inset: 0;
+        }
+
+        @media (max-width: 768px) {
+            .overlay-shape {
+                clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
+            }
+        }
+        
+        /* Lead slider styles */
+        .lead-slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .lead-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .lead-prev,
+        .lead-next {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lead-prev:hover,
+        .lead-next:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Overlay to enhance text visibility */
+        .lead-overlay {
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.4) 0%,
+              rgba(0, 0, 0, 0.6) 50%,
+              rgba(0, 0, 0, 0.4) 100%
+            );
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .lead-text {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+
+
+        
+        
+        /* Demand Generation section styles */
+        .demand-generation-mastery {
+            padding: 50px 20px;
+            background: url('https://digitalsuccesssolution.github.io/-Pinakin-Media/image/bg%20image%20line.png') no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        .demand-generation-mastery h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: black;
+        }
+
+        .grid-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 30%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-title {
+            padding: 20px 20px 0;
+            text-align: left;
+        }
+
+        .card-title h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(4 46 146);
+            margin: 0 0 10px 0;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Triangle overlay on image */
+        .image-wrapper::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 80px 80px;
+            border-color: transparent transparent rgb(4 46 146) transparent;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 20px;
+            background-color: transparent;
+            text-align: left;
+        }
+
+        .card-content p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Responsive for smaller screens */
+        @media screen and (max-width: 1024px) {
+            .card {
+                width: 100%;
+            }
+        }
+        
+        /* Our Focus section styles */
+        .our-focus {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 100px 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgb(12 42 113) 50%, #fff 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .focus-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            width: 100%;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .focus-left {
+            width: 45%;
+            color: #fff;
+            text-align: left;
+            padding-right: 20px;
+        }
+
+        .focus-left h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+        }
+
+        .focus-left h2::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: #fff;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .focus-right {
+            width: 50%;
+            color: rgb(12 42 113);
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .focus-right p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 0;
+            color: rgb(12 42 113);
+            text-align: justify;
+        }
+
+        /* Text Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .focus-left, .focus-right {
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .our-focus {
+                background: linear-gradient(160deg, rgb(12 42 113) 60%, #fff 100%);
+                padding: 70px 20px;
+            }
+
+            .focus-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .focus-left, .focus-right {
+                width: 100%;
+                padding: 0;
+            }
+
+            .focus-left h2 {
+                color: #fff;
+                margin-bottom: 20px;
+            }
+
+            .focus-right p {
+                color: rgb(12 42 113);
+                font-size: 16px;
+            }
+
+            .focus-left h2::after {
+                margin: 10px auto 0;
+            }
+        }
+        
+        /* Why Choose Us section styles */
+        .why-choose-us {
+            padding: 100px 20px;
+            background-color: #f9fafc;
+            font-family: Arial, sans-serif;
+            color: rgb(12 42 113);
+        }
+
+        .choose-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: auto;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .choose-left {
+            width: 55%;
+        }
+
+        .choose-left h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .choose-left h2::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: rgb(12 42 113);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .choose-left p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .choose-left h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .brand-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .brand-logos img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%);
+            transition: 0.3s;
+        }
+
+        .brand-logos img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .choose-right {
+            width: 40%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .choose-right h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: rgb(12 42 113);
+        }
+
+        .choose-right p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgb(12 42 113);
+            box-shadow: 0 0 5px rgba(12, 42, 113, 0.2);
+        }
+
+        .contact-form button {
+            background-color: rgb(12 42 113);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0a2b6a;
+        }
+
+        /* Responsive for Why Choose Us */
+        @media screen and (max-width: 1024px) {
+            .choose-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .choose-left, .choose-right {
+                width: 100%;
+            }
+
+            .choose-left h2 {
+                font-size: 36px;
+            }
+
+            .choose-left p {
+                font-size: 17px;
+            }
+
+            .brand-logos {
+                justify-content: center;
+            }
+
+            .choose-right {
+                margin-top: 30px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .why-choose-us {
+                padding: 60px 15px;
+            }
+
+            .choose-left h2 {
+                font-size: 30px;
+            }
+
+            .choose-left p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .brand-logos img {
+                height: 35px;
+            }
+        }
     </style>
 </head>
-
 
 <body class="font-sans text-black">
     
 <!-- ✅ Navbar Start -->
-<nav class="bg-white shadow-md sticky top-0 z-50 font-sans">
+<nav class="bg-white shadow-md sticky top-0 z-50 font-sans" data-aos="fade-down">
   <div class="max-w-7xl mx-auto px-10">
     <div class="flex justify-between items-center py-3">
 
       <!-- ✅ Left: Logo -->
-      <div class="flex items-center space-x-3">
-        <img src="your-logo.png" alt="Pinakinedge Logo" class="w-12 h-12 object-contain">
-      </div>
+      <a href="index.html">
+        <div class="flex items-center space-x-3">
+          <!-- ✅ Increased logo size (was w-12 h-12 → now w-16 h-16) -->
+          <img src="image/logo.png" alt="Pinakinedge Logo" class="w-[7rem] h-[4rem] object-contain -my-2">
+        </div>
+      </a>
 
       <!-- ✅ Center: Desktop Menu -->
       <div id="desktop-menu" class="hidden md:flex items-center space-x-8 text-[16px] font-medium">
-        <a href="#home" class="hover:text-blue-700 transition">Home</a>
-        <a href="#about" class="hover:text-blue-700 transition">About</a>
+        <a href="index.html" class="hover:text-blue-700 transition">Home</a>
+        <a href="" class="hover:text-blue-700 transition">About</a>
 
         <!-- ✅ SERVICES Dropdown -->
         <div class="relative group">
@@ -146,8 +603,8 @@
           </div>
         </div>
 
-        <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
-        <a href="#faq" class="hover:text-blue-700 transition">FAQ</a>
+        <a href="contect.html" class="hover:text-blue-700 transition">Contact</a>
+        <a href="FAQ.html" class="hover:text-blue-700 transition">FAQ</a>
       </div>
 
       <!-- ✅ Right: Social Media Icons -->
@@ -255,17 +712,13 @@
   });
 </script>
 
-
-
-
-
 <!-- ✅ Font Awesome CDN -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <!-- ✅ Mobile Menu Toggle Script -->
 <script>
   const mobileBtn = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+ 
   const icon = mobileBtn.querySelector('i');
 
   mobileBtn.addEventListener('click', () => {
@@ -284,13 +737,8 @@
   });
 </script>
 
-
-
-
 <!-- hero section start  -->
-
-
-<div class="relative w-full h-screen overflow-hidden">
+<div class="relative w-full h-screen overflow-hidden" id="home">
   <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=80"
        class="absolute inset-0 w-full h-full object-cover" alt="">
 
@@ -298,46 +746,20 @@
   <div class="absolute inset-0 overlay-shape"></div>
 
   <div class="relative z-10 flex items-center h-full px-10 md:px-20 text-white max-w-3xl">
-    <div>
+    <div data-aos="fade-right" data-aos-duration="1000">
       <h1 class="text-4xl md:text-[36px] font-bold leading-tight mb-4 " style="white-space: nowrap;">Global B2B Demand Generation Agency</h1>
       <p class="text-[15px] leading-relaxed mb-6" style="text-align: justify;">
      <span style="font-weight: bold;  font-size: larger;"> Your Strategic Partner in Intelligent, Scalable Marketing Solutions </span> <br>
 Pinakin Media is a powerful lead generation and audience engagement partner — blending data science, creative content, advanced technology, human expertise, and multi-channel strategies to deliver real business impact. With our high-performance, intent-driven demand programs, you gain full control of your sales funnel — scaling with precision, engaging the right audience, and achieving measurable results that truly make a difference.
-
       </p>
       <a href="#" class="inline-block  text-[#fff] px-6 py-3 font-semibold rounded-full hover:bg-opacity-90 transition" >KNOW MORE >></a>
     </div>
   </div>
 </div>
-
-<style>
-  /* ✅ Arrow-like diagonal overlay with gradient */
-  .overlay-shape {
-    background: linear-gradient(
-      135deg,
-      rgb(4 46 146) 0%,     /* deep blue top-left */
-      rgba(4, 48, 147, 0.7) 40%,    /* medium tone mid */
-      rgba(4, 48, 147, 0.0) 90%     /* fade-out bottom-right */
-    );
-    clip-path: polygon(0 0, 70% 0, 55% 100%, 0% 100%); /* diagonal chevron cut */
-    position: absolute;
-    inset: 0;
-  }
-
-  @media (max-width: 768px) {
-    .overlay-shape {
-      clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
-    }
-  }
-</style>
-
-<!-- hero section start  -->
-
-
+<!-- hero section end  -->
 
 <!-- ✅ UNIQUE LEAD SLIDER SECTION START -->
-<section class="lead-to-success-section relative w-full h-[80vh] overflow-hidden">
-
+<section class="lead-to-success-section relative w-full h-[80vh] overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
   <!-- Slider Wrapper -->
   <div class="lead-to-success-slider relative w-full h-full">
 
@@ -391,50 +813,6 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
   </button>
 </section>
 
-<!-- ✅ STYLES -->
-<style>
-  .lead-slide {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .lead-slide.active {
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .lead-prev,
-  .lead-next {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .lead-prev:hover,
-  .lead-next:hover {
-    transform: translateY(-50%) scale(1.1);
-  }
-
-  /* Overlay to enhance text visibility */
-  .lead-overlay {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.6) 50%,
-      rgba(0, 0, 0, 0.4) 100%
-    );
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  @media (max-width: 768px) {
-    .lead-text {
-      font-size: 1rem;
-      padding: 1rem;
-    }
-  }
-</style>
-
 <!-- ✅ SCRIPT -->
 <script>
   const leadSlides = document.querySelectorAll('.lead-slide');
@@ -482,11 +860,6 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
 </script>
 <!-- ✅ UNIQUE LEAD SLIDER SECTION END -->
 
-
-
-
-
-
 <!-- WHAT WE OFFER SECTION START -->
 <section style="
   background-color: #fff;
@@ -498,15 +871,14 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
   justify-content: center;
   padding: 0 6%;
   box-sizing: border-box;
-">
-
+" id="about">
 
   <h2 style="
     text-align: center;
     font-size: 36px;
     margin: 60px 0 50px 0;
     font-weight: bold;
-  ">
+  " data-aos="fade-up">
     WHAT WE OFFER
   </h2>
 
@@ -519,7 +891,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
   ">
 
     <!-- LEFT: FUNNEL IMAGE -->
-    <div class="offer-image" style="flex: 1; text-align: center;">
+    <div class="offer-image" style="flex: 1; text-align: center;" data-aos="fade-right" data-aos-duration="1000">
       <img src="image/tofu mofu bofu.png" alt="Marketing Funnel"
         style="width: 90%; max-width: 440px; height: auto;">
     </div>
@@ -534,7 +906,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
     ">
 
       <!-- TOFU -->
-      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;">
+      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;" data-aos="fade-left" data-aos-delay="200">
         <h3 style="font-size: 22px; font-weight: bold; margin-bottom: 6px;">TOFU</h3>
         <p style="line-height: 1.45; margin: 0; color: #333; text-align: justify;">
           At the TOFU (Top of Funnel), our focus is on driving awareness and delivering value through education.
@@ -545,7 +917,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
       </div>
 
       <!-- MOFU -->
-      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;">
+      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;" data-aos="fade-left" data-aos-delay="400">
         <h3 style="font-size: 22px; font-weight: bold; margin-bottom: 6px;">MOFU</h3>
         <p style="line-height: 1.45; margin: 0; color: #333; text-align: justify;">
           Our MOFU (Middle of Funnel) solutions are designed to seamlessly bridge awareness into conversion by nurturing
@@ -558,7 +930,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
       </div>
 
       <!-- BOFU -->
-      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;">
+      <div style="border-left: 4px solid rgb(4 46 146); padding-left: 15px;" data-aos="fade-left" data-aos-delay="600">
         <h3 style="font-size: 22px; font-weight: bold; margin-bottom: 6px;">BOFU</h3>
         <p style="line-height: 1.45; margin: 0; color: #333; text-align: justify;">
           Our BOFU (Bottom of Funnel) solutions empower B2B companies to accelerate conversions and drive measurable
@@ -623,8 +995,6 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
         gap: 15px;
       }
     }
-
-    
   </style>
 </section>
 <!-- WHAT WE OFFER SECTION END -->
@@ -632,17 +1002,15 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
 
 
 
-
-
 <!-- Demand Generation section start  -->
-<section class="demand-generation-mastery">
-  <h2 >Demand Generation Mastery</h2>
+<section class="demand-generation-mastery" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-out">
+  <h2 data-aos="fade-up" data-aos-duration="400">Demand Generation Mastery</h2>
   <div class="grid-container">
     
     <!-- Multi-Touch Campaigns -->
-    <div class="card">
-      <div class="card-title" >
-        <h3 >Multi-Touch Campaigns</h3>
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="100">
+      <div class="card-title">
+        <h3>Multi-Touch Campaigns</h3>
       </div>
       <div class="image-wrapper">
         <img src="https://images.unsplash.com/photo-1712903911043-1f9226c43c8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE11bHRpLVRvdWNoJTIwQ2FtcGFpZ25zfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Multi-Touch Campaigns">
@@ -653,7 +1021,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
     </div>
 
     <!-- Webinar & Content Strategies -->
-    <div class="card">
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="200">
       <div class="card-title">
         <h3>Webinar & Content Strategies</h3>
       </div>
@@ -666,7 +1034,7 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
     </div>
 
     <!-- Digital & Offline Activation -->
-    <div class="card">
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="300">
       <div class="card-title">
         <h3>Digital & Offline Activation</h3>
       </div>
@@ -681,10 +1049,75 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
   </div>
 </section>
 
+<section class="demand-generation-mastery" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-out">
+  <div class="grid-container">
+    
+    <!-- Account-Based Marketing -->
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="100">
+      <div class="card-title">
+        <h3>Account-Based Marketing</h3>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://images.unsplash.com/photo-1712903911043-1f9226c43c8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE11bHRpLVRvdWNoJTIwQ2FtcGFpZ25zfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Multi-Touch Campaigns">
+      </div>
+      <div class="card-content">
+        <p>Drive Conversions with Our Account-Based Marketing Services
+With our Account-Based Marketing (ABM) services, we help you shift from broad outreach to precise targeting — focusing your efforts on the accounts that matter most. By aligning your marketing and sales teams around high-value prospects, ABM allows you to engage decision-makers, shorten sales cycles, and boost conversion rates where it counts.
+</p>
+      </div>
+    </div>
+
+    <!-- Data-Centric Approach -->
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="200">
+      <div class="card-title">
+        <h3>Data-Centric Approach</h3>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8V2ViaW5hciUyMCUyNiUyMENvbnRlbnQlMjBTdHJhdGVnaWVzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Webinar & Content Strategies">
+      </div>
+      <div class="card-content">
+        <p>Clean, verified, GDPR/CCPA-compliant data ensures precision and accuracy in targeting efforts.</p>
+      </div>
+    </div>
+
+    <!-- Increased Conversion -->
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="300">
+      <div class="card-title">
+        <h3>Increased Conversion</h3>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://images.unsplash.com/photo-1556788574-6035a909af32?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8RGlnaXRhbCUyMCUyNiUyME9mZmxpbmUlMjBBY3RpdmF0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Digital & Offline Activation">
+      </div>
+      <div class="card-content">
+        <p>Ensuring every campaign is built upon a strong data foundation for higher engagement and conversion likelihood.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="demand-generation-mastery" data-aos="fade-up" data-aos-duration="500" data-aos-easing="ease-out">
+  <div class="grid-container">
+    
+    <!-- Reliable Foundation -->
+    <div class="card" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="100">
+      <div class="card-title">
+        <h3>Reliable Foundation</h3>
+      </div>
+      <div class="image-wrapper">
+        <img src="https://images.unsplash.com/photo-1712903911043-1f9226c43c8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE11bHRpLVRvdWNoJTIwQ2FtcGFpZ25zfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Multi-Touch Campaigns">
+      </div>
+      <div class="card-content">
+        <p>• Provide reliable data foundation for campaigns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
 .demand-generation-mastery {
   padding: 50px 20px;
-  background: url('https://digitalsuccesssolution.github.io/-Pinakin-Media/image/bg%20image%20line.png') no-repeat center center;
+  background: url('/image/line.png') no-repeat center center;
   background-size: cover;
   text-align: center;
   font-family: Arial, sans-serif;
@@ -708,14 +1141,17 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
 
 .card {
   width: 30%;
- 
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
- background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
 
-  
+.card:hover {
+  transform: scale(1);
 }
 
 .card-title {
@@ -742,6 +1178,11 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .image-wrapper img {
+  transform: scale(1.05);
 }
 
 /* Triangle overlay on image */
@@ -779,93 +1220,69 @@ Pinakin Media is a powerful lead generation and audience engagement partner — 
 }
 </style>
 
-<!-- Demand Generation section start  -->
+<script>
+// Add GSAP animations for instant appearance
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize AOS with faster settings for this section
+  AOS.init({
+    duration: 500,
+    once: true,
+    offset: 50, // Reduced offset for earlier trigger
+    easing: 'ease-out'
+  });
 
-<section class="demand-generation-mastery">
- 
-  <div class="grid-container">
-    
-    <!-- Multi-Touch Campaigns -->
-    <div class="card">
-      <div class="card-title" >
-        <h3 >Account-Based Marketing</h3>
-      </div>
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1712903911043-1f9226c43c8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE11bHRpLVRvdWNoJTIwQ2FtcGFpZ25zfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Multi-Touch Campaigns">
-      </div>
-      <div class="card-content">
-        <p>Drive Conversions with Our Account-Based Marketing Services
-With our Account-Based Marketing (ABM) services, we help you shift from broad outreach to precise targeting — focusing your efforts on the accounts that matter most. By aligning your marketing and sales teams around high-value prospects, ABM allows you to engage decision-makers, shorten sales cycles, and boost conversion rates where it counts.
-</p>
-      </div>
-    </div>
-
-    <!-- Webinar & Content Strategies -->
-    <div class="card">
-      <div class="card-title">
-        <h3>Data-Centric Approach</h3>
-      </div>
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8V2ViaW5hciUyMCUyNiUyMENvbnRlbnQlMjBTdHJhdGVnaWVzfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Webinar & Content Strategies">
-      </div>
-      <div class="card-content">
-        <p>Clean, verified, GDPR/CCPA-compliant data ensures precision and accuracy in targeting efforts.</p>
-      </div>
-    </div>
-
-    <!-- Digital & Offline Activation -->
-    <div class="card">
-      <div class="card-title">
-        <h3>Increased Conversion</h3>
-      </div>
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1556788574-6035a909af32?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8RGlnaXRhbCUyMCUyNiUyME9mZmxpbmUlMjBBY3RpdmF0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Digital & Offline Activation">
-      </div>
-      <div class="card-content">
-        <p>Ensuring every campaign is built upon a strong data foundation for higher engagement and conversion likelihood.</p>
-      </div>
-    </div>
-
-  </div>
+  // GSAP animations for cards
+  gsap.registerPlugin(ScrollTrigger);
   
-  
-</section>
+  // Animate cards with faster timing
+  gsap.utils.toArray('.demand-generation-mastery .card').forEach(card => {
+    gsap.fromTo(card, {
+      opacity: 0,
+      y: 30,
+      scale: 0.9
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 0.95,
+      duration: 0.4,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 85%", // Trigger earlier
+        end: "bottom 15%",
+        toggleActions: "play none none reverse"
+      }
+    });
+  });
 
-
-<section class="demand-generation-mastery">
- 
-  <div class="grid-container">
-    
-    <!-- Multi-Touch Campaigns -->
-    <div class="card">
-      <div class="card-title" >
-        <h3 >Reliable Foundation</h3>
-      </div>
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1712903911043-1f9226c43c8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE11bHRpLVRvdWNoJTIwQ2FtcGFpZ25zfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Multi-Touch Campaigns">
-      </div>
-      <div class="card-content">
-        <p>•	Provide reliable data foundation for campaigns.
-</p>
-      </div>
-    </div>
-
-   
-  </div>
-  
-  
-</section>
-
-
+  // Animate section headings
+  gsap.utils.toArray('.demand-generation-mastery h2').forEach(heading => {
+    gsap.fromTo(heading, {
+      opacity: 0,
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: heading,
+        start: "top 85%",
+        end: "bottom 15%",
+        toggleActions: "play none none reverse"
+      }
+    });
+  });
+});
+</script>
+<!-- Demand Generation section end  -->
 
 <!-- our focus section start  -->
-
-<section class="our-focus">
+<section class="our-focus" id="services">
   <div class="focus-container">
-    <div class="focus-left">
+    <div class="focus-left" data-aos="fade-right" data-aos-duration="1000">
       <h2>Our Focus</h2>
     </div>
-    <div class="focus-right">
+    <div class="focus-right" data-aos="fade-left" data-aos-duration="1000">
       <p style="text-align: right; text-align: justify; margin-left: 80px;">
         At <strong>PinakinEdge Media</strong>, we focus on maximizing customer satisfaction through 
         high-quality, intent-driven leads that sales teams actually accept and act on. 
@@ -875,140 +1292,15 @@ With our Account-Based Marketing (ABM) services, we help you shift from broad ou
     </div>
   </div>
 </section>
-
-<style>
-/* Section Base */
-.our-focus {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 100px 20px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, rgb(12 42 113) 50%, #fff 50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Container Layout */
-.focus-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1100px;
-  width: 100%;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
-}
-
-/* Left Section (on Blue background) */
-.focus-left {
-  width: 45%;
-  color: #fff;
-  text-align: left;
-  padding-right: 20px;
-}
-
-.focus-left h2 {
-  font-size: 40px;
-  font-weight: bold;
-  margin: 0;
-  position: relative;
-}
-
-.focus-left h2::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 3px;
-  background-color: #fff;
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-/* Right Section (on White background) */
-.focus-right {
-  width: 50%;
-  color: rgb(12 42 113);
-  text-align: left;
-  padding-left: 20px;
-}
-
-.focus-right p {
-  font-size: 18px;
-  line-height: 1.8;
-  margin: 0;
-  color: rgb(12 42 113);
-}
-
-/* Text Animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.focus-left, .focus-right {
-  animation: fadeInUp 1.2s ease-in-out;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-  .our-focus {
-    background: linear-gradient(160deg, rgb(12 42 113) 60%, #fff 100%);
-    padding: 70px 20px;
-  }
-
-  .focus-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .focus-left, .focus-right {
-    width: 100%;
-    padding: 0;
-  }
-
-  .focus-left h2 {
-    color: #fff;
-    margin-bottom: 20px;
-  }
-
-  .focus-right p {
-    color: rgb(12 42 113);
-    font-size: 16px;
-  }
-
-  .focus-left h2::after {
-    margin: 10px auto 0;
-  }
-}
-</style>
 <!-- Our Focus Section End -->
 
-
-
-
-
-<!-- Our Focus Section Start -->
-
-
-
-
 <!-- Why Choose Us Section Start -->
-<section class="why-choose-us">
+<section class="why-choose-us" id="contact">
   <div class="choose-container">
-    <div class="choose-left">
+    <div class="choose-left" data-aos="fade-right" data-aos-duration="1000">
       <h2>Why Choose Us</h2>
       <p>
-        At <strong>PinakinEdge Media</strong>, we’re not just another marketing agency — we’re your full-funnel growth partner. 
+        At <strong>PinakinEdge Media</strong>, we're not just another marketing agency — we're your full-funnel growth partner. 
         We deliver sales-accepted, high-quality leads at speed to maximize ROI, while lowering cost-per-lead, 
         building trust, and strengthening your digital presence. As a global leader in B2B sales and marketing, 
         we provide end-to-end solutions — from demand generation, email, ABM, and content syndication to data intelligence, 
@@ -1018,7 +1310,7 @@ With our Account-Based Marketing (ABM) services, we help you shift from broad ou
 
       <h3>Trusted by leading technology companies for demand generation success</h3>
 
-      <div class="brand-logos">
+      <div class="brand-logos" data-aos="zoom-in" data-aos-delay="400">
         <img src="microsoft-logo.png" alt="Microsoft">
         <img src="oracle-logo.png" alt="Oracle">
         <img src="aws-logo.png" alt="AWS">
@@ -1031,7 +1323,7 @@ With our Account-Based Marketing (ABM) services, we help you shift from broad ou
       </div>
     </div>
 
-    <div class="choose-right">
+    <div class="choose-right" data-aos="fade-left" data-aos-duration="1000">
       <h3>Contact</h3>
       <p>
         Contact us today to discover how our tailored solutions can support and accelerate your demand generation growth — 
@@ -1049,538 +1341,267 @@ With our Account-Based Marketing (ABM) services, we help you shift from broad ou
 </section>
 <!-- Why Choose Us Section End -->
 
-
-<style>
-/* ========= OUR FOCUS ========= */
-.our-focus {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 100px 20px;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, rgb(12 42 113) 50%, #fff 50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.focus-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1100px;
-  width: 100%;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
-}
-
-.focus-left {
-  width: 45%;
-  color: #fff;
-  text-align: left;
-  padding-right: 20px;
-  animation: fadeInUp 1.2s ease-in-out;
-}
-
-.focus-left h2 {
-  font-size: 40px;
-  font-weight: bold;
-  margin: 0;
-  position: relative;
-}
-
-.focus-left h2::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 3px;
-  background-color: #fff;
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-.focus-right {
-  width: 50%;
-  color: rgb(12 42 113);
-  text-align: left;
-  padding-left: 20px;
-  animation: fadeInUp 1.2s ease-in-out;
-}
-
-.focus-right p {
-  font-size: 18px;
-  line-height: 1.8;
-  margin: 0;
-  color: rgb(12 42 113);
-  text-align: justify;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive for Our Focus */
-@media screen and (max-width: 1024px) {
-  .our-focus {
-    background: linear-gradient(160deg, rgb(12 42 113) 60%, #fff 100%);
-    padding: 80px 20px;
-  }
-
-  .focus-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .focus-left, .focus-right {
-    width: 100%;
-    padding: 0;
-  }
-
-  .focus-left h2 {
-    color: #fff;
-    font-size: 36px;
-    margin-bottom: 25px;
-  }
-
-  .focus-left h2::after {
-    margin: 10px auto 0;
-  }
-
-  .focus-right p {
-    font-size: 17px;
-    color: rgb(12 42 113);
-    padding: 0 10px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .our-focus {
-    background: linear-gradient(180deg, rgb(12 42 113) 45%, #fff 55%);
-    padding: 60px 15px;
-  }
-
-  .focus-left h2 {
-    font-size: 30px;
-  }
-
-  .focus-right p {
-    font-size: 16px;
-    line-height: 1.7;
-    text-align: justify;
-  }
-}
-
-
-/* ========= WHY CHOOSE US ========= */
-.why-choose-us {
-  padding: 100px 20px;
-  background-color: #f9fafc;
-  font-family: Arial, sans-serif;
-  color: rgb(12 42 113);
-}
-
-.choose-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 1100px;
-  margin: auto;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.choose-left {
-  width: 55%;
-  animation: fadeInUp 1.2s ease-in-out;
-}
-
-.choose-left h2 {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.choose-left h2::after {
-  content: "";
-  display: block;
-  width: 70px;
-  height: 3px;
-  background-color: rgb(12 42 113);
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-.choose-left p {
-  font-size: 18px;
-  line-height: 1.8;
-  text-align: justify;
-  margin-bottom: 25px;
-}
-
-.choose-left h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.brand-logos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-}
-
-.brand-logos img {
-  height: 40px;
-  width: auto;
-  filter: grayscale(100%);
-  transition: 0.3s;
-}
-
-.brand-logos img:hover {
-  filter: grayscale(0%);
-  transform: scale(1.05);
-}
-
-.choose-right {
-  width: 40%;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  animation: fadeInUp 1.2s ease-in-out;
-}
-
-.choose-right h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-  color: rgb(12 42 113);
-}
-
-.choose-right p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 12px 15px;
-  font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  outline: none;
-  transition: 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  border-color: rgb(12 42 113);
-  box-shadow: 0 0 5px rgba(12, 42, 113, 0.2);
-}
-
-.contact-form button {
-  background-color: rgb(12 42 113);
-  color: #fff;
-  border: none;
-  padding: 12px 0;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.contact-form button:hover {
-  background-color: #0a2b6a;
-}
-
-/* Responsive for Why Choose Us */
-@media screen and (max-width: 1024px) {
-  .choose-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .choose-left, .choose-right {
-    width: 100%;
-  }
-
-  .choose-left h2 {
-    font-size: 36px;
-  }
-
-  .choose-left p {
-    font-size: 17px;
-  }
-
-  .brand-logos {
-    justify-content: center;
-  }
-
-  .choose-right {
-    margin-top: 30px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .why-choose-us {
-    padding: 60px 15px;
-  }
-
-  .choose-left h2 {
-    font-size: 30px;
-  }
-
-  .choose-left p {
-    font-size: 16px;
-    line-height: 1.7;
-  }
-
-  .brand-logos img {
-    height: 35px;
-  }
-}
-</style>
-
-
-<!-- why us chose section end  -->
-
-
-     <!-- Footer -->
-    <footer class="bg-primary text-white py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Pinakin Media</h3>
-                    <p class="mb-4">Premium digital marketing solutions that drive growth and maximize ROI for businesses of all sizes.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="hover:text-gray-300 transition-colors duration-300">Home</a></li>
-                        <li><a href="#about" class="hover:text-gray-300 transition-colors duration-300">About Us</a></li>
-                        <li><a href="#services" class="hover:text-gray-300 transition-colors duration-300">Services</a></li>
-                        <li><a href="#careers" class="hover:text-gray-300 transition-colors duration-300">Careers</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Resources -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Resources</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Blog</a></li>
-                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Case Studies</a></li>
-                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Whitepapers</a></li>
-                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Webinars</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Contact Info -->
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                            <span>123 Business Avenue, Suite 100<br>New York, NY 10001</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>+1 (555) 123-4567</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2"></i>
-                            <span>info@pinakinmedia.com</span>
-                        </li>
-                    </ul>
+<!-- Footer -->
+<footer class="bg-primary text-white py-12" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company Info -->
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-bold mb-4">Pinakin Media</h3>
+                <p class="mb-4">Premium digital marketing solutions that drive growth and maximize ROI for businesses of all sizes.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
-                <p>&copy; 2023 Pinakin Media. All rights reserved.</p>
+            <!-- Quick Links -->
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="hover:text-gray-300 transition-colors duration-300">Home</a></li>
+                    <li><a href="#about" class="hover:text-gray-300 transition-colors duration-300">About Us</a></li>
+                    <li><a href="#services" class="hover:text-gray-300 transition-colors duration-300">Services</a></li>
+                    <li><a href="#careers" class="hover:text-gray-300 transition-colors duration-300">Careers</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-xl font-bold mb-4">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Blog</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Case Studies</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Whitepapers</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Webinars</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                        <span>123 Business Avenue, Suite 100<br>New York, NY 10001</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone mr-2"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>info@pinakinmedia.com</span>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
-
-    <!-- Signup Form Modal -->
-    <div id="signup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold">Get Started with Pinakin Media</h3>
-                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <form id="signup-form" class="space-y-4">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
-                </div>
-                
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
-                </div>
-                
-                <div>
-                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                    <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                </div>
-                
-                <div>
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">How can we help you?</label>
-                    <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-                </div>
-                
-                <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors duration-300">Submit</button>
-            </form>
+        
+        <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+            <p>&copy; 2023 Pinakin Media. All rights reserved.</p>
         </div>
     </div>
+</footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // FAQ accordion functionality
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const answer = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                
-                // Toggle answer visibility
-                answer.classList.toggle('hidden');
-                
-                // Rotate icon
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-                
-                // Show signup modal
-                document.getElementById('signup-modal').classList.remove('hidden');
-            });
-        });
-
-        // Close modal
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('signup-modal').classList.add('hidden');
-        });
-
-        // Form submission
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // In a real implementation, you would send this data to your backend
-            console.log('Form submitted:', data);
-            
-            // Show success message (in a real implementation)
-            alert('Thank you for your interest! We will contact you soon.');
-            
-            // Close modal
-            document.getElementById('signup-modal').classList.add('hidden');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Hero slider functionality with GSAP
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('#hero-slider > div');
-        const dots = document.querySelectorAll('.slider-dot');
+<!-- Signup Form Modal -->
+<div id="signup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-bold">Get Started with Pinakin Media</h3>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         
-        function showSlide(index) {
-            // Hide all slides
-            gsap.to(slides, {
-                duration: 0.5,
-                opacity: 0,
-                onComplete: function() {
-                    slides.forEach(slide => slide.style.display = 'none');
-                    
-                    // Show current slide
-                    slides[index].style.display = 'block';
-                    
-                    gsap.fromTo(slides[index], 
-                        { opacity: 0 }, 
-                        { duration: 0.5, opacity: 1 }
-                    );
-                }
-            });
+        <form id="signup-form" class="space-y-4">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
             
-            // Update dots
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.remove('bg-opacity-50');
-                    dot.classList.add('bg-opacity-100');
-                } else {
-                    dot.classList.remove('bg-opacity-100');
-                    dot.classList.add('bg-opacity-50');
-                }
-            });
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
             
-            currentSlide = index;
+            <div>
+                <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            
+            <div>
+                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">How can we help you?</label>
+                <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors duration-300">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Initialize GSAP with ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // GSAP animations for various elements
+    gsap.utils.toArray('.fade-in-up').forEach(el => {
+        gsap.fromTo(el, {
+            opacity: 0,
+            y: 30
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: el,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+    
+    // Animate hero section text
+    gsap.fromTo('.hero-text', {
+        opacity: 0,
+        y: 50
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power2.out"
+    });
+    
+    // Animate cards in demand generation section
+    gsap.utils.toArray('.card').forEach((card, i) => {
+        gsap.fromTo(card, {
+            opacity: 0,
+            y: 50
+        }, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.2,
+            scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+    
+    // Animate focus section
+    gsap.utils.toArray('.focus-left, .focus-right').forEach((el, i) => {
+        gsap.fromTo(el, {
+            opacity: 0,
+            x: i === 0 ? -50 : 50
+        }, {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: el,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+    
+    // Animate brand logos
+    gsap.fromTo('.brand-logos img', {
+        opacity: 0,
+        scale: 0.8
+    }, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.1,
+        scrollTrigger: {
+            trigger: '.brand-logos',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
         }
-        
-        // Initialize slider
-        showSlide(0);
-        
-        // Auto-advance slides
-        setInterval(() => {
-            let nextSlide = (currentSlide + 1) % slides.length;
-            showSlide(nextSlide);
-        }, 5000);
-        
-        // Dot click events
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
+    });
+    
+    // Animate contact form
+    gsap.fromTo('.contact-form', {
+        opacity: 0,
+        y: 30
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: '.contact-form',
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // FAQ accordion functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // Toggle answer visibility
+            answer.classList.toggle('hidden');
+            
+            // Rotate icon
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+            
+            // Show signup modal
+            document.getElementById('signup-modal').classList.remove('hidden');
         });
-    </script>
-      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+    });
+
+    // Close modal
+    document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('signup-modal').classList.add('hidden');
+    });
+
+    // Form submission
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        // In a real implementation, you would send this data to your backend
+        console.log('Form submitted:', data);
+        
+        // Show success message (in a real implementation)
+        alert('Thank you for your interest! We will contact you soon.');
+        
+        // Close modal
+        document.getElementById('signup-modal').classList.add('hidden');
+        
+        // Reset form
+        this.reset();
+    });
+</script>
 </body>
 </html>

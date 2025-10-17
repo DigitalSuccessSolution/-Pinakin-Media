@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Pinakinedge Media</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#043093',
+                        secondary: '#ffffff',
+                        text: '#000000'
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #043093;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #03257a;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+     
+
+
+
+        
+        /* Job card styles */
+        .job-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #043093;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Form styles */
+        .career-form input,
+        .career-form textarea,
+        .career-form select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .career-form input:focus,
+        .career-form textarea:focus,
+        .career-form select:focus {
+            outline: none;
+            border-color: #043093;
+            box-shadow: 0 0 0 3px rgba(4, 48, 147, 0.1);
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-input-button {
+            display: inline-block;
+            padding: 0.75rem 1rem;
+            background-color: #f3f4f6;
+            border: 1px dashed #d1d5db;
+            border-radius: 0.375rem;
+            color: #6b7280;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .file-input-button:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .submit-btn {
+            background-color: #043093;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #03257a;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-black">
+    
+<!-- ✅ Navbar Start -->
+<nav class="bg-white shadow-md sticky top-0 z-50 font-sans" data-aos="fade-down">
+  <div class="max-w-7xl mx-auto px-10">
+    <div class="flex justify-between items-center py-3">
+
+      <!-- ✅ Left: Logo -->
+      <a href="index.html">
+        <div class="flex items-center space-x-3">
+          <img src="image/logo.png" alt="Pinakinedge Logo" class="w-[7rem] h-[4rem] object-contain -my-2">
+        </div>
+      </a>
+
+      <!-- ✅ Center: Desktop Menu -->
+      <div id="desktop-menu" class="hidden md:flex items-center space-x-8 text-[16px] font-medium">
+        <a href="index.html" class="hover:text-blue-700 transition">Home</a>
+        <a href="about.html" class="hover:text-blue-700 transition">About</a>
+
+        <!-- ✅ SERVICES Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-blue-700 transition flex items-center">
+            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 mt-2 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                      group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 
+                      group-hover:translate-y-0">
+
+            <!-- TOFU -->
+            <div class="relative group/tofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                TOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/tofu:opacity-100 group-hover/tofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Awareness Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Social Media Outreach</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">SEO Optimization</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Content Creation</a>
+              </div>
+            </div>
+
+            <!-- MOFU -->
+            <div class="relative group/mofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                MOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/mofu:opacity-100 group-hover/mofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Lead Nurturing</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Email Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Retargeting Ads</a>
+              </div>
+            </div>
+
+            <!-- BOFU -->
+            <div class="relative group/bofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                BOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/bofu:opacity-100 group-hover/bofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sales Enablement</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Demo Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Case Studies</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Free Trials</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="careers.html" class="text-blue-700 font-semibold transition">Careers</a>
+
+        <!-- ✅ RESOURCES Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-blue-700 transition flex items-center">
+            Resources <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible 
+                      group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 
+                      group-hover:translate-y-0">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Blogs</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Whitepapers</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Case Studies</a>
+          </div>
+        </div>
+
+        <a href="contact.html" class="hover:text-blue-700 transition">Contact</a>
+        <a href="faq.html" class="hover:text-blue-700 transition">FAQ</a>
+      </div>
+
+      <!-- ✅ Right: Social Media Icons -->
+      <div class="hidden md:flex items-center space-x-4 pr-3">
+        <a href="#" class="text-[#1877F2] hover:opacity-80"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-[#1DA1F2] hover:opacity-80"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-[#0077B5] hover:opacity-80"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-[#E4405F] hover:opacity-80"><i class="fab fa-instagram"></i></a>
+      </div>
+
+      <!-- ✅ Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="text-blue-700 focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ✅ Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col md:hidden border-t border-gray-200 py-4 space-y-2 bg-white w-full transition-all duration-300">
+      <a href="index.html" class="block py-2 px-3 hover:text-blue-700">Home</a>
+      <a href="about.html" class="block py-2 px-3 hover:text-blue-700">About</a>
+
+      <!-- ✅ Services (Mobile Accordion) -->
+      <details class="py-2 px-3">
+        <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+          Services <i class="fas fa-chevron-down text-xs"></i>
+        </summary>
+        <div class="pl-4 mt-2">
+          <!-- TOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              TOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Awareness Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Social Media Outreach</a>
+              <a href="#" class="block py-1 hover:text-blue-700">SEO Optimization</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Content Creation</a>
+            </div>
+          </details>
+
+          <!-- MOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              MOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Lead Nurturing</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Email Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Retargeting Ads</a>
+            </div>
+          </details>
+
+          <!-- BOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              BOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Sales Enablement</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Demo Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Case Studies</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Free Trials</a>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <a href="careers.html" class="block py-2 px-3 text-blue-700 font-semibold">Careers</a>
+
+      <!-- ✅ Resources (Mobile Accordion) -->
+      <details class="py-2 px-3">
+        <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+          Resources <i class="fas fa-chevron-down text-xs"></i>
+        </summary>
+        <div class="pl-4 mt-1">
+          <a href="#" class="block py-1 hover:text-blue-700">Blogs</a>
+          <a href="#" class="block py-1 hover:text-blue-700">Whitepapers</a>
+          <a href="#" class="block py-1 hover:text-blue-700">Case Studies</a>
+        </div>
+      </details>
+
+      <a href="contact.html" class="block py-2 px-3 hover:text-blue-700">Contact</a>
+      <a href="faq.html" class="block py-2 px-3 hover:text-blue-700">FAQ</a>
+
+      <!-- ✅ Social Icons (Mobile Bottom) -->
+      <div class="flex space-x-4 mt-4 pl-3">
+        <a href="#" class="text-[#1877F2] hover:opacity-80"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-[#1DA1F2] hover:opacity-80"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-[#0077B5] hover:opacity-80"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-[#E4405F] hover:opacity-80"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- ✅ Navbar End -->
+
+
+<!-- Hero Section -->
+<section class="careers-hero relative overflow-hidden">
+  <!-- ✅ Background Image -->
+  <div class="absolute inset-0">
+    <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FyZWVyfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600" 
+         alt="Background" 
+         class="w-full h-full object-cover">
+  </div>
+
+  <!-- ✅ Blue Diagonal Overlay -->
+  <div class="absolute inset-0 clip-diagonal bg-[#043093]/90"></div>
+
+  <!-- ✅ Text Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 flex items-center justify-end min-h-[70vh]">
+    <div class="text-white text-right w-full md:w-auto md:pr-16" data-aos="fade-left">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+        Join Our Team
+      </h1>
+      <p class="text-lg md:text-xl mb-8 leading-relaxed">
+        Build your career with Pinakinedge Media and <br>
+        make an impact in the digital marketing world
+      </p>
+      <a href="#openings" 
+         class="bg-white text-[#043093] px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors duration-300 inline-block">
+        View Open Positions
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ✅ Blue Diagonal Shape */
+.clip-diagonal {
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 60% 100%);
+}
+
+/* ✅ Base Section Styling */
+.careers-hero {
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+/* ✅ Desktop Text Alignment */
+@media (min-width: 1025px) {
+  .careers-hero .text-right {
+    text-align: right;
+  }
+
+  .careers-hero .md\:pr-16 {
+    padding-right: 6rem; /* pushes text close to right edge */
+  }
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 1024px) {
+  .clip-diagonal {
+    clip-path: polygon(35% 0, 100% 0, 100% 100%, 55% 100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .careers-hero {
+    min-height: 60vh;
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 50% 100%);
+  }
+
+  .careers-hero .flex {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .careers-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .careers-hero p {
+    font-size: 1rem;
+  }
+
+  .careers-hero a {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clip-diagonal {
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 45% 100%);
+  }
+
+  .careers-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .careers-hero p {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
+<!-- Intro Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">Your Career Adventure Starts Here</h2>
+            <p class="text-lg text-gray-700 mb-8">
+                Pinakinedge Media believes that great people build great things. If you're passionate, innovative, and ready to make an impact, we want you with us. Explore exciting opportunities, grow your skills, and be part of a culture that values creativity, collaboration, and your unique talents.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-primary">We Value Our Employees</h3>
+                <p class="text-gray-700 mb-6">
+                    At Pinakinedge Media our people are our greatest strength. We believe in creating a workplace where every employee feels respected, supported, and inspired to do their best work.
+                </p>
+                <p class="text-gray-700 mb-6">
+                    That's why we invest in your growth, recognize your contributions, and listen to your ideas. From competitive compensation and meaningful benefits to flexible work arrangements and a strong culture of inclusion—we're committed to making sure you feel valued every step of the way.
+                </p>
+                <p class="text-xl font-semibold text-primary">Accelerate your career today!</p>
+            </div>
+            <div class="bg-primary p-8 rounded-lg text-white">
+                <h3 class="text-2xl font-bold mb-6">Why Work With Us?</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Competitive salary and benefits package</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Flexible work arrangements</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Continuous learning and development opportunities</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Collaborative and inclusive work environment</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Opportunities for career advancement</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle mt-1 mr-3 text-secondary"></i>
+                        <span>Work with industry-leading clients and projects</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Job Openings Section -->
+<section id="openings" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Current Job Openings</h2>
+            <p class="text-lg text-gray-700 max-w-2xl mx-auto">Explore our current opportunities and find the perfect role to match your skills and ambitions.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Research Analyst -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-xl font-bold mb-2 text-primary">Research Analyst</h3>
+                <p class="text-gray-600 mb-4">Full-time • Remote/Hybrid</p>
+                <p class="text-gray-700 mb-6">Conduct market research and analysis to support strategic decision-making and campaign development.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 2 weeks ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="Research Analyst">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quality Analyst -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-bold mb-2 text-primary">Quality Analyst</h3>
+                <p class="text-gray-600 mb-4">Full-time • On-site</p>
+                <p class="text-gray-700 mb-6">Ensure the quality and effectiveness of our digital marketing campaigns through rigorous testing and analysis.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 1 week ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="Quality Analyst">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- MIS Executive -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-xl font-bold mb-2 text-primary">MIS Executive</h3>
+                <p class="text-gray-600 mb-4">Full-time • On-site</p>
+                <p class="text-gray-700 mb-6">Manage and analyze data to support business operations and decision-making processes.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 3 days ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="MIS Executive">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email Marketing Executive -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-xl font-bold mb-2 text-primary">Email Marketing Executive</h3>
+                <p class="text-gray-600 mb-4">Full-time • Remote/Hybrid</p>
+                <p class="text-gray-700 mb-6">Develop and execute email marketing campaigns to drive engagement and conversions.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 5 days ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="Email Marketing Executive">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Digital Marketing Specialist -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-xl font-bold mb-2 text-primary">Digital Marketing Specialist</h3>
+                <p class="text-gray-600 mb-4">Full-time • Remote</p>
+                <p class="text-gray-700 mb-6">Create and implement digital marketing strategies across multiple channels to drive brand awareness and lead generation.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 1 week ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="Digital Marketing Specialist">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Writer -->
+            <div class="job-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="600">
+                <h3 class="text-xl font-bold mb-2 text-primary">Content Writer</h3>
+                <p class="text-gray-600 mb-4">Full-time • Remote</p>
+                <p class="text-gray-700 mb-6">Create compelling and engaging content for various digital platforms to attract and retain customers.</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">Posted 2 days ago</span>
+                    <button class="apply-btn text-primary font-semibold hover:underline" data-position="Content Writer">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Application Form Section -->
+<section id="application-form" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">Apply Now</h2>
+            <p class="text-lg text-gray-700">Fill out the form below to submit your application for the selected position.</p>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-lg shadow-md" data-aos="fade-up">
+            <form id="career-form" class="career-form space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="position" class="block text-sm font-medium text-gray-700 mb-1">Position Applied *</label>
+                        <select id="position" name="position" required>
+                            <option value="">Select a position</option>
+                            <option value="Research Analyst">Research Analyst</option>
+                            <option value="Quality Analyst">Quality Analyst</option>
+                            <option value="MIS Executive">MIS Executive</option>
+                            <option value="Email Marketing Executive">Email Marketing Executive</option>
+                            <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
+                            <option value="Content Writer">Content Writer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="resume" class="block text-sm font-medium text-gray-700 mb-1">Upload Resume (PDF/DOCS only) *</label>
+                    <div class="file-input-wrapper">
+                        <div class="file-input-button">
+                            <i class="fas fa-cloud-upload-alt mr-2"></i>
+                            <span id="file-name">Choose file</span>
+                        </div>
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">Maximum file size: 5MB. Accepted formats: PDF, DOC, DOCX</p>
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Your Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us why you're interested in this position and what makes you a great fit..."></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="submit-btn">
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-primary text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company Info -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Pinakin Media</h3>
+                <p class="mb-4">Premium digital marketing solutions that drive growth and maximize ROI for businesses of all sizes.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="hover:text-gray-300 transition-colors duration-300">Home</a></li>
+                    <li><a href="about.html" class="hover:text-gray-300 transition-colors duration-300">About Us</a></li>
+                    <li><a href="#services" class="hover:text-gray-300 transition-colors duration-300">Services</a></li>
+                    <li><a href="careers.html" class="hover:text-gray-300 transition-colors duration-300">Careers</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Resources</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Blog</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Case Studies</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Whitepapers</a></li>
+                    <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Webinars</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                        <span>123 Business Avenue, Suite 100<br>New York, NY 10001</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone mr-2"></i>
+                        <span>+1 (555) 123-4567</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>info@pinakinmedia.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+            <p>&copy; 2023 Pinakin Media. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = this.querySelector('i');
+        
+        menu.classList.toggle('hidden');
+        
+        if (menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        } else {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        }
+    });
+
+    // File input display
+    const fileInput = document.getElementById('resume');
+    const fileNameDisplay = document.getElementById('file-name');
+    
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileNameDisplay.textContent = this.files[0].name;
+        } else {
+            fileNameDisplay.textContent = 'Choose file';
+        }
+    });
+
+    // Apply button functionality
+    const applyButtons = document.querySelectorAll('.apply-btn');
+    const positionSelect = document.getElementById('position');
+    
+    applyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const position = this.getAttribute('data-position');
+            positionSelect.value = position;
+            
+            // Scroll to form
+            document.getElementById('application-form').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission
+    document.getElementById('career-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        // In a real implementation, you would send this data to your backend
+        console.log('Application submitted:', data);
+        
+        // Show success message
+        alert('Thank you for your application! We will review your submission and get back to you soon.');
+        
+        // Reset form
+        this.reset();
+        fileNameDisplay.textContent = 'Choose file';
+    });
+</script>
+</body>
+</html>

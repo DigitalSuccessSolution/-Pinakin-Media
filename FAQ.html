@@ -1,0 +1,1329 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinakin Media | Premium Digital Marketing Solutions</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#043093',
+                        secondary: '#ffffff',
+                        text: '#000000'
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #043093;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #03257a;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Arrow-like diagonal overlay with gradient */
+        .overlay-shape {
+            background: linear-gradient(
+              135deg,
+              rgb(4 46 146) 0%,     /* deep blue top-left */
+              rgba(4, 48, 147, 0.7) 40%,    /* medium tone mid */
+              rgba(4, 48, 147, 0.0) 90%     /* fade-out bottom-right */
+            );
+            clip-path: polygon(0 0, 70% 0, 55% 100%, 0% 100%); /* diagonal chevron cut */
+            position: absolute;
+            inset: 0;
+        }
+
+        @media (max-width: 768px) {
+            .overlay-shape {
+                clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);
+            }
+        }
+        
+        /* Lead slider styles */
+        .lead-slide {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .lead-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .lead-prev,
+        .lead-next {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lead-prev:hover,
+        .lead-next:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Overlay to enhance text visibility */
+        .lead-overlay {
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.4) 0%,
+              rgba(0, 0, 0, 0.6) 50%,
+              rgba(0, 0, 0, 0.4) 100%
+            );
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .lead-text {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+
+
+        
+        
+        /* Demand Generation section styles */
+        .demand-generation-mastery {
+            padding: 50px 20px;
+            background: url('https://digitalsuccesssolution.github.io/-Pinakin-Media/image/bg%20image%20line.png') no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        .demand-generation-mastery h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: black;
+        }
+
+        .grid-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 30%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card-title {
+            padding: 20px 20px 0;
+            text-align: left;
+        }
+
+        .card-title h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(4 46 146);
+            margin: 0 0 10px 0;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Triangle overlay on image */
+        .image-wrapper::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 80px 80px;
+            border-color: transparent transparent rgb(4 46 146) transparent;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 20px;
+            background-color: transparent;
+            text-align: left;
+        }
+
+        .card-content p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Responsive for smaller screens */
+        @media screen and (max-width: 1024px) {
+            .card {
+                width: 100%;
+            }
+        }
+        
+        /* Our Focus section styles */
+        .our-focus {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 100px 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, rgb(12 42 113) 50%, #fff 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .focus-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            width: 100%;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .focus-left {
+            width: 45%;
+            color: #fff;
+            text-align: left;
+            padding-right: 20px;
+        }
+
+        .focus-left h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+        }
+
+        .focus-left h2::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: #fff;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .focus-right {
+            width: 50%;
+            color: rgb(12 42 113);
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .focus-right p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 0;
+            color: rgb(12 42 113);
+            text-align: justify;
+        }
+
+        /* Text Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .focus-left, .focus-right {
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .our-focus {
+                background: linear-gradient(160deg, rgb(12 42 113) 60%, #fff 100%);
+                padding: 70px 20px;
+            }
+
+            .focus-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .focus-left, .focus-right {
+                width: 100%;
+                padding: 0;
+            }
+
+            .focus-left h2 {
+                color: #fff;
+                margin-bottom: 20px;
+            }
+
+            .focus-right p {
+                color: rgb(12 42 113);
+                font-size: 16px;
+            }
+
+            .focus-left h2::after {
+                margin: 10px auto 0;
+            }
+        }
+        
+        /* Why Choose Us section styles */
+        .why-choose-us {
+            padding: 100px 20px;
+            background-color: #f9fafc;
+            font-family: Arial, sans-serif;
+            color: rgb(12 42 113);
+        }
+
+        .choose-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px;
+            margin: auto;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .choose-left {
+            width: 55%;
+        }
+
+        .choose-left h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .choose-left h2::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: rgb(12 42 113);
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .choose-left p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .choose-left h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .brand-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .brand-logos img {
+            height: 40px;
+            width: auto;
+            filter: grayscale(100%);
+            transition: 0.3s;
+        }
+
+        .brand-logos img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .choose-right {
+            width: 40%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .choose-right h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: rgb(12 42 113);
+        }
+
+        .choose-right p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px 15px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgb(12 42 113);
+            box-shadow: 0 0 5px rgba(12, 42, 113, 0.2);
+        }
+
+        .contact-form button {
+            background-color: rgb(12 42 113);
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0a2b6a;
+        }
+
+        /* Responsive for Why Choose Us */
+        @media screen and (max-width: 1024px) {
+            .choose-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .choose-left, .choose-right {
+                width: 100%;
+            }
+
+            .choose-left h2 {
+                font-size: 36px;
+            }
+
+            .choose-left p {
+                font-size: 17px;
+            }
+
+            .brand-logos {
+                justify-content: center;
+            }
+
+            .choose-right {
+                margin-top: 30px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .why-choose-us {
+                padding: 60px 15px;
+            }
+
+            .choose-left h2 {
+                font-size: 30px;
+            }
+
+            .choose-left p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            .brand-logos img {
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-black">
+    
+<!-- ✅ Navbar Start -->
+<nav class="bg-white shadow-md sticky top-0 z-50 font-sans" data-aos="fade-down">
+  <div class="max-w-7xl mx-auto px-10">
+    <div class="flex justify-between items-center py-3">
+
+      <!-- ✅ Left: Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="your-logo.png" alt="Pinakinedge Logo" class="w-12 h-12 object-contain">
+      </div>
+
+      <!-- ✅ Center: Desktop Menu -->
+      <div id="desktop-menu" class="hidden md:flex items-center space-x-8 text-[16px] font-medium">
+        <a href="#home" class="hover:text-blue-700 transition">Home</a>
+        <a href="#about" class="hover:text-blue-700 transition">About</a>
+
+        <!-- ✅ SERVICES Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-blue-700 transition flex items-center">
+            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 mt-2 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                      group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 
+                      group-hover:translate-y-0">
+
+            <!-- TOFU -->
+            <div class="relative group/tofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                TOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/tofu:opacity-100 group-hover/tofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Awareness Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Social Media Outreach</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">SEO Optimization</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Content Creation</a>
+              </div>
+            </div>
+
+            <!-- MOFU -->
+            <div class="relative group/mofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                MOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/mofu:opacity-100 group-hover/mofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Lead Nurturing</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Email Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Retargeting Ads</a>
+              </div>
+            </div>
+
+            <!-- BOFU -->
+            <div class="relative group/bofu">
+              <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
+                BOFU <i class="fas fa-chevron-right text-xs"></i>
+              </a>
+              <div class="absolute left-full top-0 mt-0 ml-1 w-52 bg-white shadow-lg rounded-md opacity-0 invisible 
+                          group-hover/bofu:opacity-100 group-hover/bofu:visible transition-all duration-300">
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sales Enablement</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Demo Campaigns</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Case Studies</a>
+                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Free Trials</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#careers" class="hover:text-blue-700 transition">Careers</a>
+
+        <!-- ✅ RESOURCES Dropdown -->
+        <div class="relative group">
+          <button class="hover:text-blue-700 transition flex items-center">
+            Resources <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible 
+                      group-hover:opacity-100 group-hover:visible transition-all duration-300 transform -translate-y-2 
+                      group-hover:translate-y-0">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Blogs</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Whitepapers</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Case Studies</a>
+          </div>
+        </div>
+
+        <a href="#contact" class="hover:text-blue-700 transition">Contact</a>
+        <a href="#faq" class="hover:text-blue-700 transition">FAQ</a>
+      </div>
+
+      <!-- ✅ Right: Social Media Icons -->
+      <div class="hidden md:flex items-center space-x-4 pr-3">
+        <a href="#" class="text-[#1877F2] hover:opacity-80"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-[#1DA1F2] hover:opacity-80"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-[#0077B5] hover:opacity-80"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-[#E4405F] hover:opacity-80"><i class="fab fa-instagram"></i></a>
+      </div>
+
+      <!-- ✅ Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="text-blue-700 focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ✅ Mobile Menu -->
+    <div id="mobile-menu" class="hidden flex-col md:hidden border-t border-gray-200 py-4 space-y-2 bg-white w-full transition-all duration-300">
+      <a href="#home" class="block py-2 px-3 hover:text-blue-700">Home</a>
+      <a href="#about" class="block py-2 px-3 hover:text-blue-700">About</a>
+
+      <!-- ✅ Services (Mobile Accordion) -->
+      <details class="py-2 px-3">
+        <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+          Services <i class="fas fa-chevron-down text-xs"></i>
+        </summary>
+        <div class="pl-4 mt-2">
+          <!-- TOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              TOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Awareness Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Social Media Outreach</a>
+              <a href="#" class="block py-1 hover:text-blue-700">SEO Optimization</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Content Creation</a>
+            </div>
+          </details>
+
+          <!-- MOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              MOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Lead Nurturing</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Email Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Retargeting Ads</a>
+            </div>
+          </details>
+
+          <!-- BOFU -->
+          <details>
+            <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+              BOFU <i class="fas fa-chevron-down text-xs"></i>
+            </summary>
+            <div class="pl-4 mt-1">
+              <a href="#" class="block py-1 hover:text-blue-700">Sales Enablement</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Demo Campaigns</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Case Studies</a>
+              <a href="#" class="block py-1 hover:text-blue-700">Free Trials</a>
+            </div>
+          </details>
+        </div>
+      </details>
+
+      <a href="#careers" class="block py-2 px-3 hover:text-blue-700">Careers</a>
+
+      <!-- ✅ Resources (Mobile Accordion) -->
+      <details class="py-2 px-3">
+        <summary class="cursor-pointer hover:text-blue-700 flex justify-between items-center">
+          Resources <i class="fas fa-chevron-down text-xs"></i>
+        </summary>
+        <div class="pl-4 mt-1">
+          <a href="#" class="block py-1 hover:text-blue-700">Blogs</a>
+          <a href="#" class="block py-1 hover:text-blue-700">Whitepapers</a>
+          <a href="#" class="block py-1 hover:text-blue-700">Case Studies</a>
+        </div>
+      </details>
+
+      <a href="#contact" class="block py-2 px-3 hover:text-blue-700">Contact</a>
+      <a href="#faq" class="block py-2 px-3 hover:text-blue-700">FAQ</a>
+
+      <!-- ✅ Social Icons (Mobile Bottom) -->
+      <div class="flex space-x-4 mt-4 pl-3">
+        <a href="#" class="text-[#1877F2] hover:opacity-80"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-[#1DA1F2] hover:opacity-80"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-[#0077B5] hover:opacity-80"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-[#E4405F] hover:opacity-80"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- ✅ Navbar End -->
+
+<!-- ✅ Script for Mobile Menu Toggle -->
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+<!-- ✅ Font Awesome CDN -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- ✅ Mobile Menu Toggle Script -->
+<script>
+  const mobileBtn = document.getElementById('mobile-menu-button');
+ 
+  const icon = mobileBtn.querySelector('i');
+
+  mobileBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
+    } else {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      icon.classList.add('fa-bars');
+      icon.classList.remove('fa-times');
+    }
+  });
+</script>
+
+
+
+
+
+
+<!-- section 1 start-->
+ 
+<!-- FAQ Section -->
+<section class="py-20  relative overflow-hidden" style="background-color: #fff;">
+    <!-- Background decorative elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+        <div class="absolute -top-24 -left-24 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div class="absolute top-1/2 -right-16 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
+        <div class="absolute -bottom-16 left-1/3 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-4 tracking-wide">
+                HELP & SUPPORT
+            </span>
+           <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[#042e92]">
+    Frequently Asked Questions
+</h2>
+
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full mb-4"></div>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Get answers to your questions by filling out our quick inquiry form
+            </p>
+        </div>
+        
+        <!-- FAQ Items -->
+        <div class="space-y-4 mb-12">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-[#042e92] transition-colors duration-300">
+                        What services does Pinakin Media offer?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-[#042e92] transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <!-- Answer for FAQ 1 -->
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We offer a comprehensive range of digital marketing services including SEO, content marketing, social media management, PPC advertising, email marketing, web development, and marketing automation. Our team specializes in creating customized strategies that drive measurable results for your business.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 2 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-[#042e92] transition-colors duration-300">
+                        How do you measure campaign success?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-[#042e92] transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <!-- Answer for FAQ 2 -->
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We use a variety of KPIs including ROI, conversion rates, customer acquisition cost, lifetime value, engagement metrics, and brand awareness indicators to measure and optimize campaign performance. Our transparent reporting system ensures you always know exactly how your campaigns are performing.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-[#042e92]transition-colors duration-300">
+                        What industries do you specialize in?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-[#042e92] group-hover:text-blue-600 transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <!-- Answer for FAQ 3 -->
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        We have experience across multiple industries including technology, healthcare, finance, e-commerce, professional services, and B2B manufacturing. Our diverse expertise allows us to adapt proven strategies to your specific industry needs and challenges.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Item 4 -->
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <button class="faq-question w-full text-left p-6 font-semibold flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group">
+                    <span class="text-lg text-gray-800 group-hover:text-[#042e92] transition-colors duration-300">
+                        How long does it take to see results?
+                    </span>
+                    <div class="flex items-center">
+                        <span class="text-sm text-blue-600 font-medium mr-3 hidden group-hover:block">View Answer</span>
+                        <i class="fas fa-chevron-down text-gray-400 group-hover:text-[#042e92] transition-all duration-300 transform"></i>
+                    </div>
+                </button>
+                <!-- Answer for FAQ 4 -->
+                <div class="faq-answer hidden border-t border-gray-100">
+                    <div class="p-6 text-gray-600 leading-relaxed">
+                        While some tactics like PPC can deliver immediate results, comprehensive marketing strategies typically show significant impact within 3-6 months as we optimize and scale campaigns. We provide regular progress updates and adjust strategies based on performance data to ensure optimal results.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inquiry Form Popup -->
+    <div id="inquiryPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 transform transition-all duration-300 scale-95">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-800">Get Your Answer</h3>
+                    <button id="closePopup" class="text-gray-400 hover:text-gray-600 transition-colors duration-300">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
+                <p class="text-gray-600 text-sm mt-2">Please fill this quick form to view the answer</p>
+            </div>
+            
+            <form id="popupInquiryForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" name="name" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                           placeholder="Enter your full name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" name="email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                           placeholder="Enter your email">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Company</label>
+                    <input type="text" name="company" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
+                           placeholder="Your company name">
+                </div>
+                
+                <div class="flex items-center">
+                    <input type="checkbox" name="consent" required 
+                           class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <label class="ml-2 text-sm text-gray-600">
+                        I agree to receive marketing communications
+                    </label>
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg">
+                    Submit & View Answer
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div id="successPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-4 p-6 text-center transform transition-all duration-300 scale-95">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
+            <p class="text-gray-600 mb-6">Your information has been submitted successfully. Now viewing the answer.</p>
+            <button id="closeSuccessPopup" 
+                    class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                Continue
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+    
+    .faq-item.active .faq-question {
+        background-color: #f8fafc;
+        border-color: #3b82f6;
+    }
+    
+    .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+    }
+    
+    .faq-item.active .faq-answer {
+        display: block;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    #inquiryPopup.show {
+        display: flex !important;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    #inquiryPopup.show > div {
+        animation: slideUp 0.3s ease-in-out;
+    }
+    
+    #successPopup.show {
+        display: flex !important;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    #successPopup.show > div {
+        animation: slideUp 0.3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elements
+        const inquiryPopup = document.getElementById('inquiryPopup');
+        const successPopup = document.getElementById('successPopup');
+        const closePopup = document.getElementById('closePopup');
+        const closeSuccessPopup = document.getElementById('closeSuccessPopup');
+        const popupInquiryForm = document.getElementById('popupInquiryForm');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        // Track current FAQ being viewed
+        let currentFaqItem = null;
+        
+        // FAQ Toggle Functionality
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', () => {
+                // If answer is already visible, just toggle it
+                if (answer.classList.contains('hidden')) {
+                    // Show inquiry popup first
+                    currentFaqItem = item;
+                    showInquiryPopup();
+                } else {
+                    // Toggle answer visibility
+                    item.classList.toggle('active');
+                    answer.classList.toggle('hidden');
+                }
+            });
+        });
+        
+        // Show Inquiry Popup
+        function showInquiryPopup() {
+            inquiryPopup.classList.remove('hidden');
+            inquiryPopup.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Hide Inquiry Popup
+        function hideInquiryPopup() {
+            inquiryPopup.classList.remove('show');
+            inquiryPopup.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Show Success Popup
+        function showSuccessPopup() {
+            successPopup.classList.remove('hidden');
+            successPopup.classList.add('show');
+        }
+        
+        // Hide Success Popup
+        function hideSuccessPopup() {
+            successPopup.classList.remove('show');
+            successPopup.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close Popup Events
+        closePopup.addEventListener('click', hideInquiryPopup);
+        closeSuccessPopup.addEventListener('click', hideSuccessPopup);
+        
+        // Close popups when clicking outside
+        inquiryPopup.addEventListener('click', function(e) {
+            if (e.target === inquiryPopup) {
+                hideInquiryPopup();
+            }
+        });
+        
+        successPopup.addEventListener('click', function(e) {
+            if (e.target === successPopup) {
+                hideSuccessPopup();
+            }
+        });
+        
+        // Popup Form Submission
+        popupInquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validate form
+            if (!data.name || !data.email || !data.consent) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            // Here you would typically send the data to your server
+            console.log('Popup Inquiry Form submitted:', data);
+            
+            // Hide inquiry popup and show success popup
+            hideInquiryPopup();
+            showSuccessPopup();
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // After success popup is closed, show the FAQ answer
+        closeSuccessPopup.addEventListener('click', function() {
+            if (currentFaqItem) {
+                const answer = currentFaqItem.querySelector('.faq-answer');
+                currentFaqItem.classList.add('active');
+                answer.classList.remove('hidden');
+                currentFaqItem = null;
+            }
+            hideSuccessPopup();
+        });
+        
+        // Add AOS initialization if not already done
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
+        }
+    });
+</script>
+
+<!-- section 1 end-->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Pinakin Media</h3>
+                    <p class="mb-4">Premium digital marketing solutions that drive growth and maximize ROI for businesses of all sizes.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="hover:text-gray-300 transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-gray-300 transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-gray-300 transition-colors duration-300">About Us</a></li>
+                        <li><a href="#services" class="hover:text-gray-300 transition-colors duration-300">Services</a></li>
+                        <li><a href="#careers" class="hover:text-gray-300 transition-colors duration-300">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-gray-300 transition-colors duration-300">Webinars</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>123 Business Avenue, Suite 100<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@pinakinmedia.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+                <p>&copy; 2023 Pinakin Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Signup Form Modal -->
+    <div id="signup-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Get Started with Pinakin Media</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="signup-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                </div>
+                
+                <div>
+                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                    <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">How can we help you?</label>
+                    <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-blue-800 transition-colors duration-300">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Rotate icon
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                
+                // Show signup modal
+                document.getElementById('signup-modal').classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('signup-modal').classList.add('hidden');
+        });
+
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // In a real implementation, you would send this data to your backend
+            console.log('Form submitted:', data);
+            
+            // Show success message (in a real implementation)
+            alert('Thank you for your interest! We will contact you soon.');
+            
+            // Close modal
+            document.getElementById('signup-modal').classList.add('hidden');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Hero slider functionality with GSAP
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('#hero-slider > div');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        function showSlide(index) {
+            // Hide all slides
+            gsap.to(slides, {
+                duration: 0.5,
+                opacity: 0,
+                onComplete: function() {
+                    slides.forEach(slide => slide.style.display = 'none');
+                    
+                    // Show current slide
+                    slides[index].style.display = 'block';
+                    
+                    gsap.fromTo(slides[index], 
+                        { opacity: 0 }, 
+                        { duration: 0.5, opacity: 1 }
+                    );
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-opacity-50');
+                    dot.classList.add('bg-opacity-100');
+                } else {
+                    dot.classList.remove('bg-opacity-100');
+                    dot.classList.add('bg-opacity-50');
+                }
+            });
+            
+            currentSlide = index;
+        }
+        
+        // Initialize slider
+        showSlide(0);
+        
+        // Auto-advance slides
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Dot click events
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+    </script>
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
